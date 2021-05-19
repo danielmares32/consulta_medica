@@ -6,11 +6,8 @@ import { AppComponent } from './app.component';
 import { MedicoComponent } from './medico/medico.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
-<<<<<<< HEAD
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-=======
 import { EnfermeraComponent } from './enfermera/enfermera.component';
->>>>>>> fe74584253d011074fb0b259c7fab80dcf48b9bd
 
 @NgModule({
   declarations: [
