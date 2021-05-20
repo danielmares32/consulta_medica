@@ -20,7 +20,8 @@ import { EnfermeraComponent } from './enfermera/enfermera.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
