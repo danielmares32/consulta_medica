@@ -5,7 +5,7 @@ let app = express();
 app.use(express.static(__dirname+'/dist'));
 
 app.get('/', (req, res)=>{
-    res.sendFile(__dirname+'/dist/ConsMed/index.html');
+    res.sendFile(__dirname+'/consulta-medica/dist/consulta-medica/index.html');
 });
 
 let server = app.listen("8081", "127.0.0.1" ,function(){

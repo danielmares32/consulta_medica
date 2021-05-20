@@ -1,42 +1,22 @@
 {
-  "name": "cons-med",
-  "version": "0.0.0",
+  "name": "consultamedica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielmares32/consulta_medica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielmares32/consulta_medica/issues"
+  },
+  "homepage": "https://github.com/danielmares32/consulta_medica#readme",
   "dependencies": {
-    "@angular/animations": "~12.0.0",
-    "@angular/common": "~12.0.0",
-    "@angular/compiler": "~12.0.0",
-    "@angular/core": "~12.0.0",
-    "@angular/forms": "~12.0.0",
-    "@angular/localize": "~12.0.0",
-    "@angular/platform-browser": "~12.0.0",
-    "@angular/platform-browser-dynamic": "~12.0.0",
-    "@angular/router": "~12.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^11.0.0-beta.1",
-    "bootstrap": "^4.5.0",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.1.0",
-    "zone.js": "~0.11.4"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^12.0.0",
-    "@angular/cli": "~12.0.0",
-    "@angular/compiler-cli": "~12.0.0",
-    "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
-    "jasmine-core": "~3.7.0",
-    "karma": "~6.3.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.0.3",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "typescript": "~4.2.3"
+    "express": "^4.17.1"
   }
 }
