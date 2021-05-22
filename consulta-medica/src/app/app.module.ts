@@ -6,17 +6,26 @@ import { AppComponent } from './app.component';
 import { MedicoComponent } from './medico/medico.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { InicioComponent } from './inicio/inicio.component';
+
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PersonalComponent } from './personal/personal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MedicoComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    InicioComponent,
+    PersonalComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

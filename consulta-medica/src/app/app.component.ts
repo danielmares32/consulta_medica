@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'consulta-medica';
+  public isMenuCollapsed=true;
+  public isFirst=true;
 }

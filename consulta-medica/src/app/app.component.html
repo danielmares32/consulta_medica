@@ -1,1 +1,43 @@
-<h1>Página Principal</h1>
+<nav class="navbar navbar-expand-lg static-top navbar-dark" style="background-color: navy;">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/Inicio-component" routerLinkActive="active"> 
+      <img src="/assets/logo1.png" alt="Salud Mexico" srcset=""> 
+    </a>
+
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/inicio" (click)="isMenuCollapsed = true; isFirst=false">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/login" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/registro" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Registro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/medico" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Medicos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/personal" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Personal</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div *ngIf="isFirst">
+  <app-inicio></app-inicio>
+</div>
+<div *ngIf="!isFirst">
+  <router-outlet></router-outlet>
+</div>
+<footer class="footer">
+  <br><br> 
+  © 2021 Salud México Todos los derechos reservados.
+  <br>
+  Aguascalientes, Aguascalientes, México.
+</footer>

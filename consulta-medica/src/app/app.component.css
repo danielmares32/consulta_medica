@@ -1,0 +1,11 @@
+a{
+    font-size:large;
+}
+footer {
+  font-size: medium;
+  text-align: center;
+  height: 200px;
+  padding: 3px;
+  background-color: navy;
+  color: white;
+}
