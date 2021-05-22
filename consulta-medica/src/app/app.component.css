@@ -1,11 +1,17 @@
+@font-face {
+    font-family: noto;
+    src: url('/assets/Noto.ttf');
+}
 a{
-    font-size:large;
+    font-family: noto;
+    font-size:medium;
 }
 footer {
+  font-family: noto;
   font-size: medium;
   text-align: center;
   height: 200px;
   padding: 3px;
-  background-color: navy;
+  background-color: rgb(0,0,55);
   color: white;
 }

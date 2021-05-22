@@ -1,0 +1,14 @@
+@font-face {
+    font-family: noto;
+    src: url('/assets/Noto.ttf');
+}
+h1,h2{
+    font-family: noto;
+    text-align: center;
+    padding: 15px;
+}
+p{
+    font-family: noto;
+    text-align: center;
+    font-size: large;
+}
