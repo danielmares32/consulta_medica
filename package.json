@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/danielmares32/consulta_medica#readme",
   "dependencies": {
+    "@angular/cli": "^12.0.1",
     "bootstrap": "^5.0.1",
     "express": "^4.17.1",
     "jquery": "^3.6.0",
