@@ -28,7 +28,9 @@ connection.connect();
 connection.query('SELECT * FROM paciente', function(err, rows, fields){
     if(err)
         console.error(err);
-    console.log('ID: '+rows[0].id+'\nNombre: '+rows[0].nombre);
+        console.log(rows);
+        console.log(fields);
+   console.log('ID: '+rows[0].id+'\nNombre: '+rows[0].nombre);
 });
 
 connection.end();
