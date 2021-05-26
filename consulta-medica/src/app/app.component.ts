@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var name: any;
+declare var conex: any;
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,6 @@ export class AppComponent implements OnInit {
   public isFirst=true;
 
   ngOnInit(): void {
-    new name();
+    new conex();
   }
 }
