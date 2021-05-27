@@ -1,0 +1,22 @@
+@font-face {
+    font-family: noto;
+    src: url('/assets/Noto.ttf');
+}
+h1{
+    font-family: noto;
+    text-align: center;
+    padding: 15px;
+}
+label{
+    font-family: noto;
+    margin: 10px;
+}
+input{
+    font-family: noto;
+}
+button{
+    text-align: center;
+    font-family: noto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
