@@ -13,7 +13,9 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
   crearReg(title: string){
-    this.RegService.crearRegistro
+    this.RegService.crearRegistro("Testadfsdf").subscribe((response: any)=>{
+      console.log(response);
+    });
   }
 
 }
