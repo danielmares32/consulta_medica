@@ -20,7 +20,7 @@ let connection = mysql.createConnection({
 
 connection.connect();
 //API's
-app.get('/registroMedico', urlencodedParser,(req, res)=>{
+app.post('/registroMedico', urlencodedParser,(req, res)=>{
     console.log('post request');		
     let nombre=req.body.nombre;
     let usuario=req.body.usuario;
