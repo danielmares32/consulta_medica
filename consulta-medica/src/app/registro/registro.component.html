@@ -1,7 +1,7 @@
 <!-- <script src="conexion.js"></script> -->
 <h1>Registro de Médicos</h1>
 <div class="container">
-    <form action="" method="POST">
+    <form action="http://127.0.0.1:8081/registroMedico" method="GET">
         <div class="form-group">
             <label class="label" for="nombre">Nombre</label>
             <input name="nombre" id="nombre" type="text" placeholder="Nombre" class="form-control">
@@ -15,7 +15,7 @@
             <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" class='form-control'>
             <input type="hidden" name="disponibilidad" value="1">
         </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+        <input type="submit" class="btn btn-primary" value="Registrar">
     </form>
 </div>
 
