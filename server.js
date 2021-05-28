@@ -6,9 +6,17 @@ let app = express();
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 app.use(express.static(__dirname+'/consulta-medica/dist/consulta-medica'));
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
 app.get('/', (req, res)=>{
     res.sendFile(__dirname+'/consulta-medica/src/index.html');
 });
+
+
 
 //Conexión a DB
 const mysql = require('mysql');

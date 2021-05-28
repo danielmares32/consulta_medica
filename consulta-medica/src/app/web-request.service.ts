@@ -9,7 +9,7 @@ export class WebRequestService {
   readonly ROOT_URL;
 
   constructor(private http: HttpClient) {
-    this.ROOT_URL = "localhost:4200";
+    this.ROOT_URL = "localhost:8081";
    }
    get (uri: string){
      return this.http.get(`${this.ROOT_URL}/${uri}`);
