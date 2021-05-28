@@ -3,7 +3,7 @@
 <div class="container">
     <form action="http://127.0.0.1:8081/registroMedico" method="POST">
         <div class="form-group">
-            <label class="label" for="nombre">Nombre</label>
+            <label class="label" for="nombre" [(ngModel)]="nombre">Nombre</label>
             <input name="nombre" id="nombre" type="text" placeholder="Nombre" class="form-control">
             <label class="label" for="usuario" >Usuario</label>
             <input type="text" name="usuario" placeholder="Nombre de usuario" class="form-control" id="usuario">
@@ -15,7 +15,7 @@
             <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" class='form-control'>
             <input type="hidden" name="disponibilidad" value="1">
         </div>
-        <button type="submit" class="btn btn-primary" (click)="crearReg('ololo')">Registrarse</button>
+        <button type="submit" class="btn btn-primary" (click)="crearReg()">Registrarse</button>
     </form>
 </div>
 
