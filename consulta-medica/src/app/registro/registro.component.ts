@@ -7,13 +7,24 @@ import { RegistroService } from '../registro.service';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-
+  nombre:string='';
+  usr:string='';
+  Pass:string='';
+  disp:number=0;
+  mail:string='';
+  coPass:string='';
   constructor(private RegService: RegistroService) { }
 
   ngOnInit(): void {
   }
-  crearReg(title: string){
-    this.RegService.crearRegistro("Testadfsdf").subscribe((response: any)=>{
+  crearReg(){
+    let JSON;
+    JSON={
+      body:{
+        nombre:this.nombre,usuario:this.usr,contrasena:this.Pass,disponibilidad:this.disp,correo:this.mail
+      }
+    }
+    this.RegService.crearRegistro(JSON).subscribe((response: any)=>{
       console.log(response);
     });
   }

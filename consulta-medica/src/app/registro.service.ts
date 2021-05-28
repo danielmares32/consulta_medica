@@ -9,7 +9,7 @@ export class RegistroService {
   constructor(private webReqService: WebRequestService) { }
 
   crearRegistro(JSON: Object) {
-    
-     return this.webReqService.post('registroMedico',{JSON}); 
+    console.log(JSON);
+     return this.webReqService.post('registroMedico',JSON); 
   }
 }

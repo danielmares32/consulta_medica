@@ -3,17 +3,17 @@
 <div class="container">
     <form action="http://127.0.0.1:8081/registroMedico" method="POST">
         <div class="form-group">
-            <label class="label" for="nombre" [(ngModel)]="nombre">Nombre</label>
-            <input name="nombre" id="nombre" type="text" placeholder="Nombre" class="form-control">
+            <label class="label" for="nombre" >Nombre</label>
+            <input name="nombre" id="nombre" [(ngModel)]="nombre" type="text" placeholder="Nombre" class="form-control">
             <label class="label" for="usuario" >Usuario</label>
-            <input type="text" name="usuario" placeholder="Nombre de usuario" class="form-control" id="usuario">
+            <input type="text" name="usuario" [(ngModel)]="usr" placeholder="Nombre de usuario" class="form-control" id="usuario">
             <label class="label" for="correo">E-mail</label>
-            <input type="email" name="correo" id="correo" placeholder="E-mail" class="form-control">
+            <input type="email" name="correo" [(ngModel)]="mail" id="correo" placeholder="E-mail" class="form-control">
             <label class="label" for="contrasena">Contraseña</label>
-            <input type="password" placeholder="Contraseña" id="psw" class='form-control'>
+            <input name="contra" type="password" placeholder="Contraseña" [(ngModel)]="Pass" id="psw" class='form-control'>
             <label class="label" for="contrasena">Confirmar Contraseña</label>
-            <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" class='form-control'>
-            <input type="hidden" name="disponibilidad" value="1">
+            <input  type="password" placeholder="Contraseña" name="contrasena" [(ngModel)]="coPass" id="contrasena" class='form-control'>
+            <input type="hidden" name="disponibilidad" [(ngModel)]="disp" value="1">
         </div>
         <button type="submit" class="btn btn-primary" (click)="crearReg()">Registrarse</button>
     </form>

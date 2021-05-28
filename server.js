@@ -30,7 +30,8 @@ let connection = mysql.createConnection({
 connection.connect();
 //API's
 app.post('/registroMedico', urlencodedParser,(req, res)=>{
-    console.log('post request');		
+    console.log('post request');	
+    console.log(req);	
     let nombre=req.body.nombre;
     let usuario=req.body.usuario;
     let correo=req.body.correo;
