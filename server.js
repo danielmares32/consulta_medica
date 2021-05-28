@@ -1,9 +1,8 @@
 const express = require('express');
-const bodyParser = require('body-parser')
-const path = require('path');
 let app = express();
 
-const urlencodedParser = bodyParser.urlencoded({extended:false});
+const urlencodedParser = express.urlencoded({extended:false});
+app.use(express.static('public'));
 app.use(express.static(__dirname+'/consulta-medica/dist/consulta-medica'));
 
 app.use(function(req, res, next) {
@@ -29,7 +28,8 @@ let connection = mysql.createConnection({
 
 connection.connect();
 //API's
-app.post('/registroMedico', urlencodedParser, (req, res)=>{
+app.post('/registroMedico', urlencodedParser,(req, res)=>{
+    console.log('post request');		
     let nombre=req.body.nombre;
     let usuario=req.body.usuario;
     let correo=req.body.correo;
