@@ -9,6 +9,6 @@ export class RegistroService {
   constructor(private webReqService: WebRequestService) { }
 
   crearRegistro(title: string) {
-     return this.webReqService.post('/registro', {title}); 
+     return this.webReqService.post('registro', {title}); 
   }
 }
