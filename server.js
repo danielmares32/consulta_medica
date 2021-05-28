@@ -1,7 +1,8 @@
 const express = require('express');
 let app = express();
-
-const urlencodedParser = express.urlencoded({extended:false});
+const BP = require('body-parser');
+const urlencodedParser = express.urlencoded({extended:true});
+app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static(__dirname+'/consulta-medica/dist/consulta-medica'));
 
@@ -20,6 +21,7 @@ app.get('/', (req, res)=>{
 
 //Conexión a DB
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -29,21 +31,29 @@ let connection = mysql.createConnection({
 
 connection.connect();
 //API's
-app.post('/registroMedico', urlencodedParser,(req, res)=>{
+app.post('/registroMedico',(req, res)=>{
     console.log('post request');	
-    console.log(req);	
+    console.log(req.body);	
     let nombre=req.body.nombre;
     let usuario=req.body.usuario;
     let correo=req.body.correo;
     let contrasena=req.body.contrasena;
     let disponibilidad=req.body.disponibilidad;
-    connection.query(`INSERT INTO medico VALUES(${nombre},${usuario},${correo},${contrasena},${disponibilidad})`, (err)=>{
+    connection.query(`INSERT INTO medico (nombre,usuario,correo,contraseña,disponibilidad) VALUES('${nombre}','${usuario}','${correo}','${contrasena}',${disponibilidad})`, (err)=>{
         if(err)
             console.error(err);
     });
+    res.end('Finalizado registro');
 });
 
-app.post('/loginMedico', urlencodedParser, (req,res)=>{
+app.post('/test',(req,res)=>{
+    console.log('test');
+    console.log(req.body);
+    
+    res.send('finalizado TEst');
+})
+
+app.post('/loginMedico', (req,res)=>{
     let usuario=req.body.usuario;
     let contrasena=req.body.constrasena;
     connection.query(`SELECT * FROM medico`, (err, rows, fields)=>{

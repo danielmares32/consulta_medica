@@ -20,9 +20,9 @@ export class RegistroComponent implements OnInit {
   crearReg(){
     let JSON;
     JSON={
-      body:{
+      
         nombre:this.nombre,usuario:this.usr,contrasena:this.Pass,disponibilidad:this.disp,correo:this.mail
-      }
+      
     }
     this.RegService.crearRegistro(JSON).subscribe((response: any)=>{
       console.log(response);
