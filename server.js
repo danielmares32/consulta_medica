@@ -37,8 +37,10 @@ app.post('/registroMedico',(req, res)=>{
     connection.query(`INSERT INTO medico (nombre,usuario,correo,contraseña,disponibilidad) VALUES('${nombre}','${usuario}','${correo}','${contrasena}',${disponibilidad})`, (err)=>{
         if(err)
             console.error(err);
+        else
+            res.end('Correcto');
     });
-    res.end('Finalizado registro');
+    
 });
 
 app.post('/loginMedico', (req,res)=>{
@@ -71,11 +73,45 @@ app.post('/registrarPaciente', (req, res)=>{
     connection.query(`INSERT INTO medico (nombre,fecha_nacimiento,telefono,disponibilidad) VALUES('${nombre}','${fecha_nacimiento}','${telefono}',${disponibildad})`,(err,rows,fields)=>{
         if(err)
             console.error(err);
+        else    
+            res.end('Correcto');
     });
-    res.end('Correcto');
+    
 });
 
-//app.post('/')
+app.post('/consulta', (req, res)=>{
+    let id_paciente=req.body.id_paciente;
+    let peso=req.body.peso;
+    let talla=req.body.talla;
+    let temperatura=req.body.temperatura;
+    let presion_arterial=req.body.presion_arterial;
+    let pulso_cardiaco=req.body.pulso_cardiaco;
+    let fecha=req.body.fecha;
+    connection.query(
+        `INSERT INTO diagnostico (id_paciente,peso,talla,temperatura,presion_arterial,
+        pulso_cardiaco,fecha) VALUES('${id_paciente}','${peso}','${talla}','${temperatura}',
+        '${presion_arterial}','${pulso_cardiaco}','${fecha}')`, (err, rows,fields)=>{
+            if(err)
+                console.error(err);
+            else
+                res.end('Correcto');
+    });
+});
+
+app.post('/consultaMedico', (req, res)=>{
+    let idDiagnostico=req.body.idDiagnostico;
+    let id_medico=req.body.id_medico;
+    let enfermedad=req.body.enfermedad;
+    let descripcion=req.body.descripcion;
+    connection.query(`UPDATE diagnostico SET id_medico='${id_medico}',
+    enfermedad='${enfermedad}', descripcion='${descripcion}' WHERE id=${idDiagnostico}`, (err, rows, fields)=>{
+        if(err)
+            console.error(err);
+        else
+            res.end('Correcto');
+    });
+
+});
 
 let server = app.listen("8081", "127.0.0.1", function(){
     let host = server.address().address;
