@@ -1,1 +1,22 @@
-<p>vista-enfermera works!</p>
+<div class="container">
+    <div class="imagen"><a  routerLink="/inicio"><img class="imagen" src="assets/RB1.png" alt=""></a></div>
+    <h2 class="h2">BIENVENIDO: Nombre</h2>
+    <a id="liga" routerLink="/registroP" >Registrar Paciente</a>
+    <br><br><br>
+    <div class="row">
+        <div class=" col-md-6 horizontal-scrollable text-wrap " id="DOCTORES">
+            <p>DOCTORES EN LINEA</p>
+
+        </div>
+        <div class=" col-md-6 horizontal-scrollable text-wrap " id="Pacientes">
+            <p>PACIENTES EN LISTA</p>
+                <p>Fulanito ejemplo <a id="btn_consulta" routerLink="/consulta">Consulta</a></p>
+        </div>
+    </div>
+        <div>
+            
+            <router-outlet></router-outlet>
+        </div>
+    
+
+</div>

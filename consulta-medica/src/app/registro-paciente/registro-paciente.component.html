@@ -1,4 +1,6 @@
-<h1>Registro de Paceintes</h1>
+
+<div class="imagen"><a routerLink="/vistaE"><img class="imagen" src="assets/RB1.png" alt=""></a></div>
+<h1>Registro de Pacientes</h1>
 <div class="container">
     <form action="http://127.0.0.1:8081/registrarPaciente" method="POST">
         <div class="form-group">
@@ -8,7 +10,6 @@
             <input name="fecha" id="fecha" [(ngModel)]="fecha_nacimiento" type="text" placeholder="Fecha De Nacimiento" class="form-control">
             <label class="label" for="telefono" >Telefono</label>
             <input name="telefono" id="telefono" [(ngModel)]="telefono" type="text" placeholder="Telefono" class="form-control">
-           <label class="label" for="disponibilidad">Disponibilidad</label>
             <input type="hidden" name="disponibilidad" [(ngModel)]="disp" value="1">
         </div>
         <button type="submit" class="btn btn-primary" (click)="crearReg()">Registrar Paciente</button>

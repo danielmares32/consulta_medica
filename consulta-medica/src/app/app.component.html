@@ -20,7 +20,7 @@
           <a class="nav-link active" routerLink="/registro" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Registro</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/medico" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Medicos</a>
+          <a class="nav-link active" routerLink="/vistaE" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Medicos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" routerLink="/personal" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Personal</a>
@@ -29,7 +29,7 @@
     </div>
   </div>
 </nav>
-<div *ngIf="isFirst">
+<div *ngIf="isFirst"> 
   <app-inicio></app-inicio>
 </div>
 <div *ngIf="!isFirst">

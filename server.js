@@ -69,8 +69,8 @@ app.post('/registrarPaciente', (req, res)=>{
     let nombre=req.body.nombre;
     let fecha_nacimiento=req.body.fecha_nacimiento;
     let telefono=req.body.telefono;
-    let disponibildad=req.body.disponibildad;
-    connection.query(`INSERT INTO paciente (nombre,fecha_nacimiento,telefono,disponibilidad) VALUES('${nombre}','${fecha_nacimiento}','${telefono}',${disponibildad})`,(err,rows,fields)=>{
+    let disponibilidad=req.body.disponibilidad;
+    connection.query(`INSERT INTO paciente (nombre,fecha_nacimiento,telefono,disponibilidad) VALUES('${nombre}','${fecha_nacimiento}','${telefono}',${disponibilidad})`,(err,rows,fields)=>{
         if(err)
             console.error(err);
         else    
