@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PersonalComponent } from './personal/personal.component';
 import {HttpClientModule} from '@angular/common/http';
+import { RegistroPacienteComponent } from './registro-paciente/registro-paciente.component';
+import { ConsultaComponent } from './consulta/consulta.component';
+import { VistaEnfermeraComponent } from './vista-enfermera/vista-enfermera.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +22,10 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     RegistroComponent,
     InicioComponent,
-    PersonalComponent
+    PersonalComponent,
+    RegistroPacienteComponent,
+    ConsultaComponent,
+    VistaEnfermeraComponent
   ],
   imports: [
     BrowserModule,

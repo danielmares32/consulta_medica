@@ -5,6 +5,9 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { MedicoComponent } from './medico/medico.component';
 import { PersonalComponent } from './personal/personal.component';
+import  { RegistroPacienteComponent } from './registro-paciente/registro-paciente.component';
+import {ConsultaComponent} from './consulta/consulta.component';
+import {VistaEnfermeraComponent} from './vista-enfermera/vista-enfermera.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -12,6 +15,9 @@ const routes: Routes = [
   { path: 'login', component:LoginComponent },
   { path: 'medico', component:MedicoComponent },
   { path: 'personal', component:PersonalComponent },
+  { path: 'registroP', component:RegistroPacienteComponent},
+  { path: 'consulta', component: ConsultaComponent},
+  { path: 'vistaE', component: VistaEnfermeraComponent}
 ];
 
 @NgModule({

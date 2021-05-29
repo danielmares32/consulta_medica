@@ -22,7 +22,7 @@ let connection = mysql.createConnection({
     user: 'root',
     password: ''/*'password'*/,
     database: 'consulta_medica'
-});
+}); 
 connection.connect();
 
 //API's
@@ -70,7 +70,7 @@ app.post('/registrarPaciente', (req, res)=>{
     let fecha_nacimiento=req.body.fecha_nacimiento;
     let telefono=req.body.telefono;
     let disponibildad=req.body.disponibildad;
-    connection.query(`INSERT INTO medico (nombre,fecha_nacimiento,telefono,disponibilidad) VALUES('${nombre}','${fecha_nacimiento}','${telefono}',${disponibildad})`,(err,rows,fields)=>{
+    connection.query(`INSERT INTO paciente (nombre,fecha_nacimiento,telefono,disponibilidad) VALUES('${nombre}','${fecha_nacimiento}','${telefono}',${disponibildad})`,(err,rows,fields)=>{
         if(err)
             console.error(err);
         else    
