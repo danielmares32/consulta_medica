@@ -1,9 +1,24 @@
+@font-face {
+    font-family: noto;
+    src: url('/assets/Noto.ttf');
+}
+h1,h2{
+    font-family: noto;
+    padding: 15px;
+}
+p{
+    font-family: noto;
+    text-align: center;
+    font-size: large;
+}
 #liga{
+    font-family: noto;
     text-decoration: none;
-    padding: 5px;
+    padding: 10px;
     background-color: #C70039;
     border-radius: 4px;
     color: #F5F6F9;
+    margin: 15px;
 }
 #liga:hover{
     background-color: #1A23F5;
@@ -25,9 +40,15 @@
     border: dotted;
     border-style:  black 1px;
 }
-
+button{
+    text-align: center;
+    font-family: noto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 .imagen{
     width: 40px;
     height: 40px;
     border-radius: 5px;
+    margin: 15px;
 }

@@ -1,23 +1,24 @@
-<div class="imagen"><a routerLink="/vistaE"><img class="imagen" src="assets/RB1.png" alt=""></a></div>
-<h1>Datos Consulta</h1>
 <div class="container">
-    <form action="http://127.0.0.1:8081/consulta" method="POST">
-        <div class="form-group">
-            <label class="label" for="ID" >ID</label>
-            <input name="ID" id="ID" [(ngModel)]="ID" type="text" placeholder="ID" class="form-control">
-            <label class="label" for="peso" >Peso</label>
-            <input name="peso" id="peso" [(ngModel)]="peso" type="text" placeholder="Peso" class="form-control">
-            <label class="label" for="talla" >Talla</label>
-            <input name="talla" id="talla" [(ngModel)]="talla" type="text" placeholder="Talla" class="form-control">
-           <label class="label" for="temperatura">Temperatura</label>
-           <input name="temperatura" id="temperatura" [(ngModel)]="temperatura" type="text" placeholder="Temperatura" class="form-control">
-           <label class="label" for="presionA">Presion Arterial</label>
-           <input name="presionA" id="presionA" [(ngModel)]="presion_arterial" type="text" placeholder="Presion Arterial" class="form-control">
-           <label class="label" for="pulsoC">Pulso Cardiaco</label>
-           <input name="pulsoC" id="pulsoC" [(ngModel)]="pulso_cardiaco" type="text" placeholder="Pulso Cardiaco" class="form-control">
-           <label class="label" for="fecha">Fecha</label>
-           <input name="fecha" id="fecha" [(ngModel)]="fecha" type="text" placeholder="Fecha" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="crearReg()">Registrar Consulta</button>
-    </form>
+    <div class="imagen"><a routerLink="/vistaE"><img class="imagen" src="assets/RB1.png" alt=""></a></div>
+    <h1>Datos Consulta</h1>
+        <form action="http://127.0.0.1:8081/consulta" method="POST">
+            <div class="form-group">
+                <label class="label" for="ID" >ID</label>
+                <input name="ID" id="ID" [(ngModel)]="ID" type="text" placeholder="ID" class="form-control">
+                <label class="label" for="peso" >Peso</label>
+                <input name="peso" id="peso" [(ngModel)]="peso" type="text" placeholder="Peso" class="form-control">
+                <label class="label" for="talla" >Talla</label>
+                <input name="talla" id="talla" [(ngModel)]="talla" type="text" placeholder="Talla" class="form-control">
+            <label class="label" for="temperatura">Temperatura</label>
+            <input name="temperatura" id="temperatura" [(ngModel)]="temperatura" type="text" placeholder="Temperatura" class="form-control">
+            <label class="label" for="presionA">Presion Arterial</label>
+            <input name="presionA" id="presionA" [(ngModel)]="presion_arterial" type="text" placeholder="Presion Arterial" class="form-control">
+            <label class="label" for="pulsoC">Pulso Cardiaco</label>
+            <input name="pulsoC" id="pulsoC" [(ngModel)]="pulso_cardiaco" type="text" placeholder="Pulso Cardiaco" class="form-control">
+            <label class="label" for="fecha">Fecha</label>
+            <input name="fecha" id="fecha" [(ngModel)]="fecha" type="text" placeholder="Fecha" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="crearReg()">Registrar Consulta</button>
+        </form>
 </div>
+<br><br>
