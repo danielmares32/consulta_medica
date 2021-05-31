@@ -32,15 +32,20 @@ app.post('/login',(req, res)=>{
     console.log(req.body);	
     let usuario=req.body.usuario;
     let contrasena=req.body.contrasena;
-    connection.query(`SELECT * FROM medico where usuario=${usuario} and contraseña=${contrasena}`, (err)=>{
+    connection.query(`SELECT * FROM medico where usuario='${usuario}' and contraseña='${contrasena}'`, function(err,result, fields){
         if(err){
             console.error(err);
             res.send('Login incorrecto');
+            
         }
             
-        else
-            res.end('Login  Correcto');
-    });
+        else{
+            console.log(result);
+             res.send('Login  Correcto');
+            
+        }
+     });
+    
 
     
 });

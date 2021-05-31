@@ -7,7 +7,7 @@
             <label class="label" for="psw">Contraseña</label>
             <input name="contrasena" placeholder="Contraseña"  [(ngModel)]="Pass" type="password" id="psw" class='form-control'>
         </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        <button type="submit" (click)="login()" class="btn btn-primary">Entrar</button>
     </form>
 </div>
 <br><br><br><br><br><br>
