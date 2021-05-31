@@ -28,17 +28,20 @@ connection.connect();
 //API's
 
 app.post('/login',(req, res)=>{
-    console.log('post request');	
+    console.log('login post request');	
     console.log(req.body);	
     let usuario=req.body.usuario;
     let contrasena=req.body.contrasena;
     connection.query(`SELECT * FROM medico where usuario=${usuario} and contraseña=${contrasena}`, (err)=>{
-        if(err)
+        if(err){
             console.error(err);
+            res.send('Login incorrecto');
+        }
+            
         else
-            res.end('Correcto');
+            res.end('Login  Correcto');
     });
-    
+
     
 });
 
