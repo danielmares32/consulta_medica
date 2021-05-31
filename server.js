@@ -26,6 +26,22 @@ let connection = mysql.createConnection({
 connection.connect();
 
 //API's
+
+app.post('/login',(req, res)=>{
+    console.log('post request');	
+    console.log(req.body);	
+    let usuario=req.body.usuario;
+    let contrasena=req.body.contrasena;
+    connection.query(`SELECT * FROM medico where usuario=${usuario} and contraseña=${contrasena}`, (err)=>{
+        if(err)
+            console.error(err);
+        else
+            res.end('Correcto');
+    });
+    
+    
+});
+
 app.post('/registroMedico',(req, res)=>{
     console.log('post request');	
     console.log(req.body);	
