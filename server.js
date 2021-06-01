@@ -1,8 +1,25 @@
 const express = require('express');
+const session = require('express-session'); 
 let app = express();
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static(__dirname+'/consulta-medica/dist/consulta-medica'));
+
+app.use(session({
+  
+    // It holds the secret key for session
+    secret: 'Your_Secret_Key',
+  
+    // Forces the session to be saved
+    // back to the session store
+    resave: true,
+  
+    // Forces a session that is "uninitialized"
+    // to be saved to the store
+    saveUninitialized: true
+}))
+
+var ses;
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
@@ -11,6 +28,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res)=>{
+    ses=req.session;
     res.sendFile(__dirname+'/consulta-medica/src/index.html');
 });
 
@@ -40,6 +58,9 @@ app.post('/login',(req, res)=>{
         }
             
         else{
+            ses=req.session;
+            ses.usuario=usuario;
+            
             console.log(result);
              res.send('Login  Correcto');
             
