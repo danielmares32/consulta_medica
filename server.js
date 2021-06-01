@@ -104,7 +104,8 @@ app.post('/loginMedico', (req,res)=>{
                 let idUsr=iterator.id;
                 console.log(idUsr);
                 ses.usuario=iterator.usuario;
-                ses.id=idUsr;
+                ses.idu= String(idUsr) ;
+                console.log(ses.id);
                 //La disponibildad pasa a ser activa
                 connection.query(`UPDATE medico SET disponibilidad=1 WHERE id='${idUsr}'`, (err2, rows, fields)=>{
                     if(err2)
@@ -113,7 +114,7 @@ app.post('/loginMedico', (req,res)=>{
             }
         }
         if(acceso){
-            res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.id + '"}');
+            res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
         }
         
         else{
