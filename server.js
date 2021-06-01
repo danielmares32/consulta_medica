@@ -38,7 +38,7 @@ const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: ''/*'password'*/,
+    password: 'password'/*'password'*/,
     database: 'consulta_medica'
 }); 
 connection.connect();
@@ -52,17 +52,19 @@ app.post('/login',(req, res)=>{
     let contrasena=req.body.contrasena;
     connection.query(`SELECT * FROM medico where usuario='${usuario}' and contraseña='${contrasena}'`, function(err,result, fields){
         if(err){
-            console.error(err);
+           console.error(err);
             res.send('Login incorrecto');
-            
+            console.log('Resultado erroneo: '+result);
         }
             
         else{
+            console.log(result);
             ses=req.session;
             ses.usuario=usuario;
             
+            
             console.log(result);
-             res.send('Login  Correcto');
+             res.send('{"message": "Login  Correcto"}');
             
         }
      });
@@ -89,24 +91,34 @@ app.post('/registroMedico',(req, res)=>{
 });
 
 app.post('/loginMedico', (req,res)=>{
+    ses=req.session;
     let usuario=req.body.usuario;
-    let contrasena=req.body.constrasena;
+    let contrasena=req.body.contrasena;
     let acceso=false;
     connection.query(`SELECT * FROM medico`, (err, rows, fields)=>{
         if(err)
             console.error(err);
         for (const iterator of rows) {
-            if(iterator.usuario===usuario && iterator.contrasena===contrasena){
+            if(iterator.usuario===usuario && iterator.contraseña===contrasena){
                 acceso=true;
                 let idUsr=iterator.id;
+                console.log(idUsr);
+                ses.usuario=iterator.usuario;
+                ses.id=idUsr;
                 //La disponibildad pasa a ser activa
-                connection.query(`UPDATE medico SET disponibilidad=1 WHERE id=${idUsr}`, (err2, rows, fields)=>{
+                connection.query(`UPDATE medico SET disponibilidad=1 WHERE id='${idUsr}'`, (err2, rows, fields)=>{
                     if(err2)
                         console.error(err2);
                 });
             }
         }
-        res.end(acceso);
+        if(acceso){
+            res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.id + '"}');
+        }
+        
+        else{
+            res.send( '{"message":"false"}');
+        }
     });
 });
 
