@@ -8,6 +8,9 @@ import { PersonalComponent } from './personal/personal.component';
 import  { RegistroPacienteComponent } from './registro-paciente/registro-paciente.component';
 import {ConsultaComponent} from './consulta/consulta.component';
 import {VistaEnfermeraComponent} from './vista-enfermera/vista-enfermera.component';
+import { HisorialConsultasComponent } from './medico/hisorial-consultas/hisorial-consultas.component';
+import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/consultas-disponibles.component';
+import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -17,7 +20,10 @@ const routes: Routes = [
   { path: 'personal', component:PersonalComponent },
   { path: 'registroP', component:RegistroPacienteComponent},
   { path: 'consulta', component: ConsultaComponent},
-  { path: 'vistaE', component: VistaEnfermeraComponent}
+  { path: 'vistaE', component: VistaEnfermeraComponent},
+  { path: 'historialConsultas', component: HisorialConsultasComponent },
+  { path: 'consultasDisponibles', component: ConsultasDisponiblesComponent },
+  { path: 'actualizarExpediente', component: ActualizarExpedienteComponent }
 ];
 
 @NgModule({

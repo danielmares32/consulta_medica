@@ -15,6 +15,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { RegistroPacienteComponent } from './registro-paciente/registro-paciente.component';
 import { ConsultaComponent } from './consulta/consulta.component';
 import { VistaEnfermeraComponent } from './vista-enfermera/vista-enfermera.component';
+import { HisorialConsultasComponent } from './medico/hisorial-consultas/hisorial-consultas.component';
+import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/consultas-disponibles.component';
+import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,10 @@ import { VistaEnfermeraComponent } from './vista-enfermera/vista-enfermera.compo
     PersonalComponent,
     RegistroPacienteComponent,
     ConsultaComponent,
-    VistaEnfermeraComponent
+    VistaEnfermeraComponent,
+    HisorialConsultasComponent,
+    ConsultasDisponiblesComponent,
+    ActualizarExpedienteComponent
   ],
   imports: [
     BrowserModule,
