@@ -38,39 +38,46 @@ const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password'/*'password'*/,
+    password: ''/*'password'*/,
     database: 'consulta_medica'
 }); 
 connection.connect();
 
 //API's
 
-app.post('/login',(req, res)=>{
-    console.log('login post request');	
-    console.log(req.body);	
-    let usuario=req.body.usuario;
-    let contrasena=req.body.contrasena;
-    connection.query(`SELECT * FROM medico where usuario='${usuario}' and contraseña='${contrasena}'`, function(err,result, fields){
-        if(err){
-           console.error(err);
-            res.send('Login incorrecto');
-            console.log('Resultado erroneo: '+result);
-        }
-            
+app.post('/historialConsultas', (req, res)=>{
+    let idMedico=req.body.id;
+    connection.query(`SELECT * FROM diagnostico WHERE id_medico='${idMedico}'`, (err, rows, fields)=>{
+        if(err)
+            console.error(err);
         else{
-            console.log(result);
-            ses=req.session;
-            ses.usuario=usuario;
-            
-            
-            console.log(result);
-             res.send('{"message": "Login  Correcto"}');
-            
+            res.send(JSON.stringify(rows));
         }
-     });
-    
+    });
+});
 
-    
+app.post('/consultasDisponibles', (req, res)=>{
+    connection.query(`SELECT * FROM diagnostico WHERE id_medico='NULL'`, (err, rows, fields)=>{
+        if(err)
+            console.error(err);
+        else
+            res.send(JSON.stringify(rows));
+    });
+});
+
+app.post('/actualizarExpediente', (req, res)=>{
+    let idDiagnostico=req.body.idDiagnostico;
+    let idMedico=req.body.idMedico;
+    let enfermedad=req.body.enfermedad;
+    let descripcion=req.body.descripcion;
+    connection.query(`UPDATE diagnostico SET id_medico='${idMedico}', enfermedad='${enfermedad}',
+                    descripcion='${descripcion}' WHERE id='${idDiagnostico}'`, (err, rows, fields)=>{
+        
+        if(err)
+            console.error(err);
+        else
+            res.send('{"message":"Correcto"}');
+    });
 });
 
 app.post('/registroMedico',(req, res)=>{
@@ -85,7 +92,7 @@ app.post('/registroMedico',(req, res)=>{
         if(err)
             console.error(err);
         else
-            res.end('Correcto');
+            res.end('{"message":"Correcto"}');
     });
     
 });
@@ -107,7 +114,7 @@ app.post('/loginMedico', (req,res)=>{
                 ses.idu= String(idUsr) ;
                 console.log(ses.id);
                 //La disponibildad pasa a ser activa
-                connection.query(`UPDATE medico SET disponibilidad=1 WHERE id='${idUsr}'`, (err2, rows, fields)=>{
+                connection.query(`UPDATE medico SET disponibilidad=1 WHERE id='${idUsr}'`, (err2, rows2, fields2)=>{
                     if(err2)
                         console.error(err2);
                 });
@@ -116,7 +123,6 @@ app.post('/loginMedico', (req,res)=>{
         if(acceso){
             res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
         }
-        
         else{
             res.send( '{"message":"false"}');
         }
@@ -132,7 +138,7 @@ app.post('/registrarPaciente', (req, res)=>{
         if(err)
             console.error(err);
         else    
-            res.end('Correcto');
+            res.send('{"message":"Correcto"}');
     });
     
 });
@@ -152,7 +158,7 @@ app.post('/consulta', (req, res)=>{
             if(err)
                 console.error(err);
             else
-                res.end('Correcto');
+                res.send('{"message":"Correcto"}');
     });
 });
 
@@ -166,7 +172,7 @@ app.post('/consultaMedico', (req, res)=>{
         if(err)
             console.error(err);
         else
-            res.end('Correcto');
+            res.send('{"message":"Correcto"}');
     });
 
 });
