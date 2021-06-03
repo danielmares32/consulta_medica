@@ -57,7 +57,7 @@ app.post('/historialConsultas', (req, res)=>{
 });
 
 app.post('/consultasDisponibles', (req, res)=>{
-    connection.query(`SELECT * FROM diagnostico WHERE id_medico='NULL'`, (err, rows, fields)=>{
+    connection.query(`SELECT * FROM diagnostico WHERE id_medico IS NULL`, (err, rows, fields)=>{
         if(err)
             console.error(err);
         else

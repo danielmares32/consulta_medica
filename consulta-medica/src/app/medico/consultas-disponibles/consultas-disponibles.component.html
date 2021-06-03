@@ -1,1 +1,36 @@
-<p>consultas-disponibles works!</p>
+<div class="container">
+    <h1>Consultas Disponibles</h1>
+    <h2>Selecciona la consulta a realizar</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th scope="col">ID Consulta</th>
+                <th scope="col">Nombre del Paciente</th>
+                <th scope="col">ID del Paciente</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Talla</th>
+                <th scope="col">Temperatura</th>
+                <th scope="col">Presión Arterial</th>
+                <th scope="col">Pulso Cardiaco</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Consultar</th>
+            </tr>
+            <tr *ngFor="let elemento of consultas">
+                <td>{{elemento.idConsulta}}</td>
+                <td>Nombre Paciente</td>
+                <td>{{elemento.idPaciente}}</td>
+                <td>{{elemento.peso}}</td>
+                <td>{{elemento.talla}}</td>
+                <td>{{elemento.temperatura}}</td>
+                <td>{{elemento.presion}}</td>
+                <td>{{elemento.pulso}}</td>
+                <td>{{elemento.fecha.toLocaleString()}}</td>
+                <td>
+                    <button class="btn btn-primary">Consultar</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+
