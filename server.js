@@ -38,7 +38,7 @@ const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: ''/*'password'*/,
+    password: '',
     database: 'consulta_medica'
 }); 
 connection.connect();
@@ -57,11 +57,34 @@ app.post('/historialConsultas', (req, res)=>{
 });
 
 app.post('/consultasDisponibles', (req, res)=>{
-    connection.query(`SELECT * FROM diagnostico WHERE id_medico IS NULL`, (err, rows, fields)=>{
+    let JSON1=[];
+    connection.query(`SELECT * FROM diagnostico WHERE id_medico IS NULL`,(err,rows,fields)=>{
         if(err)
             console.error(err);
-        else
-            res.send(JSON.stringify(rows));
+        else{ 
+            for (const iterator of rows) {
+                connection.query(`SELECT nombre FROM paciente WHERE id='${iterator.id_paciente}'`, (err2, rows2, fields2) => {
+                    if (err2)
+                        console.error(err2);
+                    else {
+                        JSON1.push({
+                            id: iterator.id,
+                            id_paciente: iterator.id_paciente,
+                            peso: iterator.peso,
+                            talla: iterator.talla,
+                            temperatura: iterator.temperatura,
+                            presion_arterial: iterator.presion_arterial,
+                            pulso_cardiaco: iterator.pulso_cardiaco,
+                            fecha: iterator.fecha,
+                            nombre: rows2[0].nombre
+                        });
+                    }
+                });
+            }
+            setTimeout(()=>{
+                res.send(JSON1);
+            }, 100);
+        }
     });
 });
 

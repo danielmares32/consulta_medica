@@ -7,9 +7,9 @@ import { WebRequestService } from '../web-request.service';
 export class ConsultasDisponiblesService {
 
   constructor(private webReqService: WebRequestService) {}
-    consultasdisponibles(JSON: Object):any {
-      console.log(JSON);
-      return this.webReqService.post('consultasDisponibles',JSON);
-    }
+  consultasdisponibles(JSON: Object):any {
+    console.log(JSON);
+    return this.webReqService.post('consultasDisponibles',JSON);
+  }
 }
 

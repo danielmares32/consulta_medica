@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ConsultasDisponiblesService } from '../consultas-disponibles.service';
 
 @Component({
@@ -15,11 +16,11 @@ export class ConsultasDisponiblesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let JSON1;
-    JSON1={}
+    let JSON1,JSON2;
+    JSON1={};
     this.consDisService.consultasdisponibles(JSON1).subscribe((response:any)=>{
       for (const iterator of response) {
-        let consulta=new Consulta(iterator.id,iterator.id_paciente,iterator.peso,iterator.talla,iterator.temperatura,iterator.presion_arterial,iterator.pulso_cardiaco,new Date(iterator.fecha));
+        let consulta=new Consulta(iterator.id,iterator.id_paciente,iterator.nombre,iterator.peso,iterator.talla,iterator.temperatura,iterator.presion_arterial,iterator.pulso_cardiaco,new Date(iterator.fecha));
         this.consultas.push(consulta);
       }
     });
@@ -29,15 +30,17 @@ export class ConsultasDisponiblesComponent implements OnInit {
 class Consulta {
   idConsulta:number;
   idPaciente:number;
+  nombrePaciente:string;
   peso:number;
   talla:number;
   temperatura:number;
   presion:number;
   pulso:number;
   fecha:Date;
-  constructor(idConsulta: number, idPaciente: number, peso: number, talla: number, temperatura: number, presion: number, pulso: number, fecha: Date) {
+  constructor(idConsulta: number, idPaciente: number, nombrePaciente:string, peso: number, talla: number, temperatura: number, presion: number, pulso: number, fecha: Date) {
     this.idConsulta=idConsulta;
     this.idPaciente=idPaciente;
+    this.nombrePaciente=nombrePaciente;
     this.peso=peso;
     this.talla=talla;
     this.temperatura=temperatura;

@@ -23,6 +23,9 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "jquery": "^3.6.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql-await": "^2.1.8",
+    "sync-mysql": "^3.0.1",
+    "sync-sql": "^1.0.2"
   }
 }
