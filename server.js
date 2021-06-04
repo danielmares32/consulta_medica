@@ -166,6 +166,21 @@ app.post('/registrarPaciente', (req, res)=>{
     
 });
 
+app.post('/registrarPersonal', (req, res)=>{
+    let nombre=req.body.nombre;
+    let usuario=req.body.usuario;
+    let contraseña=req.body.contraseña;
+    let correo=req.body.correo;
+    let tipo=req.body.tipo;
+    connection.query(`INSERT INTO personal (nombre,usuario,contraseña,correo,tipo) VALUES('${nombre}','${usuario}','${contraseña}','${correo}','${tipo}')`,(err,rows,fields)=>{
+        if(err)
+            console.error(err);
+        else    
+            res.send('{"message":"Correcto"}');
+    });
+    
+});
+
 app.post('/consulta', (req, res)=>{
     let id_paciente=req.body.id_paciente;
     let peso=req.body.peso;
