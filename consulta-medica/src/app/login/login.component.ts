@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
       console.log(this.respuesta);
       console.log('respuesta: '+JSON.stringify(this.respuesta));
     });
+    
   }
 
 }

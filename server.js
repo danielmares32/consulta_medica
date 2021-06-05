@@ -22,14 +22,21 @@ app.use(session({
 var ses;
 
 app.use(function(req, res, next) {
+
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
 app.get('/', (req, res)=>{
+   // console.log('Request: ' +(req.body));
+   req.session=ses;
     ses=req.session;
-    res.sendFile(__dirname+'/consulta-medica/src/index.html');
+
+    //res.sendFile(__dirname+'/consulta-medica/src/index.html');
+    console.log(ses.usuario);
+    console.log(ses);
+    res.send(ses );
 });
 
 //Conexión a DB
@@ -126,8 +133,10 @@ app.post('/loginMedico', (req,res)=>{
     let contrasena=req.body.contrasena;
     let acceso=false;
     connection.query(`SELECT * FROM medico`, (err, rows, fields)=>{
-        if(err)
+        if(err){
             console.error(err);
+        }
+            
         for (const iterator of rows) {
             if(iterator.usuario===usuario && iterator.contraseña===contrasena){
                 acceso=true;
@@ -143,11 +152,35 @@ app.post('/loginMedico', (req,res)=>{
                 });
             }
         }
+
         if(acceso){
             res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
         }
         else{
-            res.send( '{"message":"false"}');
+            connection.query(`SELECT * FROM personal_apoyo`, (err, rows, fields)=>{
+                if(err){
+                    console.error(err);
+                }
+                for (const iterator of rows) {
+                    if(iterator.usuario===usuario && iterator.contraseña===contrasena){
+                        acceso=true;
+                        let idUsr=iterator.id;
+                        console.log(idUsr);
+                        ses.usuario=iterator.usuario;
+                        ses.idu= String(idUsr) ;
+                        console.log(ses.id);
+                     
+                    }
+                }  
+              
+        
+                if(acceso){
+                    res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
+                }
+                else{
+                    res.send('{"message":"false"}');
+                }
+            });
         }
     });
 });
@@ -216,6 +249,7 @@ app.post('/consultaMedico', (req, res)=>{
 });
 
 let server = app.listen("8081", "127.0.0.1", function(){
+
     let host = server.address().address;
     let port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);
