@@ -149,7 +149,7 @@ app.post('/registrarPersonal', (req, res)=>{
     let contraseña=req.body.contraseña;
     let correo=req.body.correo;
     let tipo=req.body.tipo;
-    connection.query(`INSERT INTO personal (nombre,usuario,contraseña,correo,tipo) VALUES('${nombre}','${usuario}','${contraseña}','${correo}','${tipo}')`,(err,rows,fields)=>{
+    connection.query(`INSERT INTO personal_apoyo (nombre,usuario,contraseña,correo,tipo) VALUES('${nombre}','${usuario}','${contraseña}','${correo}','${tipo}')`,(err,rows,fields)=>{
         if(err)
             console.error(err);
         else    
