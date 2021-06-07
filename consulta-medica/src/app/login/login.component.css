@@ -10,6 +10,7 @@ h1{
 label{
     font-family: noto;
     margin: 10px;
+    font-weight: bold;
 }
 input{
     font-family: noto;
@@ -19,4 +20,6 @@ button{
     font-family: noto;
     margin-top: 15px;
     margin-bottom: 15px;
+    background-color: #C70039;
+    border-color: #C70039;
 }

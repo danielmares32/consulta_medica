@@ -10,6 +10,12 @@ export class LoginService {
   constructor(private webReqService: WebRequestService) { }
    login(JSON: Object):any {
     console.log(JSON);
+    
      return this.webReqService.post('loginMedico',JSON); 
   }
+
+  sendSesion(){
+    return this.webReqService.get('');
+  }
+
 }

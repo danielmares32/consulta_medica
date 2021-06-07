@@ -11,6 +11,7 @@ import {VistaEnfermeraComponent} from './vista-enfermera/vista-enfermera.compone
 import { HisorialConsultasComponent } from './medico/hisorial-consultas/hisorial-consultas.component';
 import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/consultas-disponibles.component';
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
+import { RecetaComponent } from './medico/receta/receta.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'vistaE', component: VistaEnfermeraComponent},
   { path: 'historialConsultas', component: HisorialConsultasComponent },
   { path: 'consultasDisponibles', component: ConsultasDisponiblesComponent },
-  { path: 'actualizarExpediente', component: ActualizarExpedienteComponent }
+  { path: 'actualizarExpediente', component: ActualizarExpedienteComponent },
+  { path: 'receta', component:RecetaComponent }
 ];
 
 @NgModule({

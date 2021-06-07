@@ -10,6 +10,7 @@ h1{
 label{
     font-family: noto;
     margin: 10px;
+    font-weight: bold;
 }
 input{
     font-family: noto;

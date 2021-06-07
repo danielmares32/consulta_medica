@@ -1,6 +1,6 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,7 +9,7 @@ import { LoginService } from '../login.service';
 export class LoginComponent implements OnInit {
   usr:string='';
   Pass:string='';
-  constructor(private logService: LoginService) { }
+  constructor(private logService: LoginService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
       this.usrid=response.idusr;
       console.log(this.respuesta);
       console.log('respuesta: '+JSON.stringify(this.respuesta));
+      this.router.navigate(['/']);
     });
+    
   }
 
 }

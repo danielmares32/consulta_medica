@@ -22,14 +22,21 @@ app.use(session({
 var ses;
 
 app.use(function(req, res, next) {
+
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
 app.get('/', (req, res)=>{
+   // console.log('Request: ' +(req.body));
+   req.session=ses;
     ses=req.session;
-    res.sendFile(__dirname+'/consulta-medica/src/index.html');
+
+    //res.sendFile(__dirname+'/consulta-medica/src/index.html');
+    console.log(ses.usuario);
+    console.log(ses);
+    res.send(ses );
 });
 
 //Conexión a DB
@@ -38,30 +45,88 @@ const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: ''/*'password'*/,
+    password: '',
     database: 'consulta_medica'
 }); 
 connection.connect();
 
 //API's
 
-app.post('/historialConsultas', (req, res)=>{
-    let idMedico=req.body.id;
-    connection.query(`SELECT * FROM diagnostico WHERE id_medico='${idMedico}'`, (err, rows, fields)=>{
+app.post('/agregarReceta', (req,res)=>{
+    let idDiagnostico=req.body.idDiagnostico;
+    let contenido=req.body.contenido;
+    connection.query(`INSERT INTO receta (id_diagnostico, contenido) VALUES('${idDiagnostico}','${contenido}')`, (err)=>{
         if(err)
             console.error(err);
-        else{
-            res.send(JSON.stringify(rows));
+        else
+            res.send('{"message":"Correcto"}');
+    })
+});
+
+app.post('/historialConsultas', (req, res)=>{
+    let idMedico=req.body.idMedico;
+    let JSON1=[];
+    connection.query(`SELECT * FROM diagnostico WHERE id_medico='${idMedico}'`,(err,rows,fields)=>{
+        if(err)
+            console.error(err);
+        else{ 
+            for (const iterator of rows) {
+                connection.query(`SELECT nombre FROM paciente WHERE id='${iterator.id_paciente}'`, (err2, rows2, fields2) => {
+                    if (err2)
+                        console.error(err2);
+                    else {
+                        JSON1.push({
+                            id: iterator.id,
+                            id_paciente: iterator.id_paciente,
+                            enfermedad: iterator.enfermedad,
+                            descripcion: iterator.descripcion,
+                            peso: iterator.peso,
+                            talla: iterator.talla,
+                            temperatura: iterator.temperatura,
+                            presion_arterial: iterator.presion_arterial,
+                            pulso_cardiaco: iterator.pulso_cardiaco,
+                            fecha: iterator.fecha,
+                            nombre: rows2[0].nombre
+                        });
+                    }
+                });
+            }
+            setTimeout(()=>{
+                res.send(JSON1);
+            }, 100);
         }
     });
 });
 
 app.post('/consultasDisponibles', (req, res)=>{
-    connection.query(`SELECT * FROM diagnostico WHERE id_medico IS NULL`, (err, rows, fields)=>{
+    let JSON1=[];
+    connection.query(`SELECT * FROM diagnostico WHERE id_medico IS NULL`,(err,rows,fields)=>{
         if(err)
             console.error(err);
-        else
-            res.send(JSON.stringify(rows));
+        else{ 
+            for (const iterator of rows) {
+                connection.query(`SELECT nombre FROM paciente WHERE id='${iterator.id_paciente}'`, (err2, rows2, fields2) => {
+                    if (err2)
+                        console.error(err2);
+                    else {
+                        JSON1.push({
+                            id: iterator.id,
+                            id_paciente: iterator.id_paciente,
+                            peso: iterator.peso,
+                            talla: iterator.talla,
+                            temperatura: iterator.temperatura,
+                            presion_arterial: iterator.presion_arterial,
+                            pulso_cardiaco: iterator.pulso_cardiaco,
+                            fecha: iterator.fecha,
+                            nombre: rows2[0].nombre
+                        });
+                    }
+                });
+            }
+            setTimeout(()=>{
+                res.send(JSON1);
+            }, 100);
+        }
     });
 });
 
@@ -103,8 +168,10 @@ app.post('/loginMedico', (req,res)=>{
     let contrasena=req.body.contrasena;
     let acceso=false;
     connection.query(`SELECT * FROM medico`, (err, rows, fields)=>{
-        if(err)
+        if(err){
             console.error(err);
+        }
+            
         for (const iterator of rows) {
             if(iterator.usuario===usuario && iterator.contraseña===contrasena){
                 acceso=true;
@@ -120,11 +187,35 @@ app.post('/loginMedico', (req,res)=>{
                 });
             }
         }
+
         if(acceso){
             res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
         }
         else{
-            res.send( '{"message":"false"}');
+            connection.query(`SELECT * FROM personal_apoyo`, (err, rows, fields)=>{
+                if(err){
+                    console.error(err);
+                }
+                for (const iterator of rows) {
+                    if(iterator.usuario===usuario && iterator.contraseña===contrasena){
+                        acceso=true;
+                        let idUsr=iterator.id;
+                        console.log(idUsr);
+                        ses.usuario=iterator.usuario;
+                        ses.idu= String(idUsr) ;
+                        console.log(ses.id);
+                     
+                    }
+                }  
+              
+        
+                if(acceso){
+                    res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
+                }
+                else{
+                    res.send('{"message":"false"}');
+                }
+            });
         }
     });
 });
@@ -193,6 +284,7 @@ app.post('/consultaMedico', (req, res)=>{
 });
 
 let server = app.listen("8081", "127.0.0.1", function(){
+
     let host = server.address().address;
     let port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);

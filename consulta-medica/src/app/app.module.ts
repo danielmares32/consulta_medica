@@ -18,6 +18,7 @@ import { VistaEnfermeraComponent } from './vista-enfermera/vista-enfermera.compo
 import { HisorialConsultasComponent } from './medico/hisorial-consultas/hisorial-consultas.component';
 import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/consultas-disponibles.component';
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
+import { RecetaComponent } from './medico/receta/receta.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/ac
     VistaEnfermeraComponent,
     HisorialConsultasComponent,
     ConsultasDisponiblesComponent,
-    ActualizarExpedienteComponent
+    ActualizarExpedienteComponent,
+    RecetaComponent
   ],
   imports: [
     BrowserModule,
