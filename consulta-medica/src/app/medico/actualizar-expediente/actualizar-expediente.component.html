@@ -1,3 +1,15 @@
-<h1>Actualizar el Expediente Del Paciente</h1>
-<h2>Seleccione la Sección del Expediente a Visualizar</h2>
+<div class="container">
+    <h1>Agregar Consulta al Expediente Clínico</h1>
+    <form action="">
+        <div class="form-group">
+            <label class="label" for="nombreEnfermedad">Nombre de la Enfermedad</label>
+            <input [(ngModel)]="enfermedad" class="form-control" type="text" id="nombreEnfermedad" name="nombreEnfermedad" placeholder="Nombre de la Enfermedad">
+            <label class="label" for="descripcion">Descripción de la Enfermedad</label>
+            <textarea [(ngModel)]="descripcion" class="form-control" type="text-area" rows="7" id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
+        </div>
+        <button type="submit" (click)="agregarConsulta()" class="btn btn-primary">Entrar</button>
+    </form>
+</div>
+
+
 

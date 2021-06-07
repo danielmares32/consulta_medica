@@ -16,7 +16,7 @@ export class ConsultasDisponiblesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let JSON1,JSON2;
+    let JSON1;
     JSON1={};
     this.consDisService.consultasdisponibles(JSON1).subscribe((response:any)=>{
       for (const iterator of response) {
