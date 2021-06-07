@@ -52,6 +52,17 @@ connection.connect();
 
 //API's
 
+app.post('/agregarReceta', (req,res)=>{
+    let idDiagnostico=req.body.idDiagnostico;
+    let contenido=req.body.contenido;
+    connection.query(`INSERT INTO receta (id_diagnostico, contenido) VALUES('${idDiagnostico}','${contenido}')`, (err)=>{
+        if(err)
+            console.error(err);
+        else
+            res.send('{"message":"Correcto"}');
+    })
+});
+
 app.post('/historialConsultas', (req, res)=>{
     let idMedico=req.body.idMedico;
     let JSON1=[];
