@@ -13,9 +13,17 @@
         <li class="nav-item">
           <a class="nav-link active" routerLink="/inicio" (click)="isMenuCollapsed = true; isFirst=false">Inicio</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" routerLink="/login" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Login</a>
-        </li>
+        <div *ngIf="SesActiva==false"> 
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/login" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Login</a>
+          </li>
+        </div>
+        <div *ngIf="SesActiva">
+          <li class="nav-item">
+            <a class="nav-link active" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Cerrar Sesión</a>
+          </li>
+        </div>
+        
         <li class="nav-item">
           <a class="nav-link active" routerLink="/registro" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Registro</a>
         </li>

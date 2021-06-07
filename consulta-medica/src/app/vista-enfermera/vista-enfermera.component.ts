@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { LoginService } from '../login.service';
 @Component({
   selector: 'app-vista-enfermera',
   templateUrl: './vista-enfermera.component.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VistaEnfermeraComponent implements OnInit {
 
-  constructor() { }
+  constructor(private logService: LoginService) { }
 
   ngOnInit(): void {
+    this.logService.sendSesion().subscribe((response: any)=>{
+      
+    });
   }
 
 }

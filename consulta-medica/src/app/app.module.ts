@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {RouterModule,Routes} from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,12 @@ import { HisorialConsultasComponent } from './medico/hisorial-consultas/hisorial
 import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/consultas-disponibles.component';
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 import { RecetaComponent } from './medico/receta/receta.component';
+
+const routes:Routes = [
+  {path: 'inicio', component: LoginComponent}
+];
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +46,7 @@ import { RecetaComponent } from './medico/receta/receta.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    RouterModule.forRoot(routes),
     NgbModule,
     HttpClientModule
   ],

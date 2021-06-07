@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
       this.usrConect=response.usr;
       this.usrid=response.idusr;
       console.log(this.respuesta);
-      console.log('respuesta: '+JSON.stringify(this.respuesta));
-      this.router.navigate(['/']);
+      console.log('respuesta login : '+JSON.stringify(this.respuesta));
+      this.router.navigate(['/inicio']);
+      //window.location.href='localhost:4200';
+
     });
     
   }

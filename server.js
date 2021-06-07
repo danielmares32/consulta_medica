@@ -30,14 +30,31 @@ app.use(function(req, res, next) {
 
 app.get('/', (req, res)=>{
    // console.log('Request: ' +(req.body));
-   req.session=ses;
+   setTimeout(()=>{
+    req.session=ses;
     ses=req.session;
-
+    console.log('Antes: '+ses);
+    if(ses.rl!=true)
+        ses.rl=true;
+    else
+        ses.rl=false
+    console.log('Despues: '+ses);
     //res.sendFile(__dirname+'/consulta-medica/src/index.html');
     console.log(ses.usuario);
     console.log(ses);
     res.send(ses );
+}, 50);
+  
 });
+
+app.post ('/rl',(req, res)=>{
+    // console.log('Request: ' +(req.body));
+    req.session=ses;
+    ses=req.session;
+    ses.rl=req.rl;
+    res.send('Actualizado');
+   
+ });
 
 //Conexión a DB
 const mysql = require('mysql');
@@ -45,7 +62,7 @@ const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'password',
     database: 'consulta_medica'
 }); 
 connection.connect();
@@ -64,6 +81,7 @@ app.post('/agregarReceta', (req,res)=>{
 });
 
 app.post('/historialConsultas', (req, res)=>{
+    
     let idMedico=req.body.idMedico;
     let JSON1=[];
     connection.query(`SELECT * FROM diagnostico WHERE id_medico='${idMedico}'`,(err,rows,fields)=>{
@@ -189,6 +207,7 @@ app.post('/loginMedico', (req,res)=>{
         }
 
         if(acceso){
+            ses.Activo=true;
             res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
         }
         else{
@@ -203,6 +222,7 @@ app.post('/loginMedico', (req,res)=>{
                         console.log(idUsr);
                         ses.usuario=iterator.usuario;
                         ses.idu= String(idUsr) ;
+                        ses.tipo=iterator.tipo;
                         console.log(ses.id);
                      
                     }
@@ -210,7 +230,9 @@ app.post('/loginMedico', (req,res)=>{
               
         
                 if(acceso){
+                    ses.Activo=true;
                     res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
+                    
                 }
                 else{
                     res.send('{"message":"false"}');

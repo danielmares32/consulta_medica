@@ -18,4 +18,10 @@ export class LoginService {
     return this.webReqService.get('');
   }
 
+  reloadSes(JSON1: Object):any{
+    console.log(JSON);
+    
+    return this.webReqService.post('rl',JSON); 
+  }
+
 }
