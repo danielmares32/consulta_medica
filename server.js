@@ -62,7 +62,7 @@ const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: '',
     database: 'consulta_medica'
 }); 
 connection.connect();
@@ -270,6 +270,55 @@ app.post('/registrarPersonal', (req, res)=>{
     });
     
 });
+
+//sacar lista de pacientes
+app.post('/ListaPacientes', (req, res)=>{
+    let JSON1=[];
+    connection.query(`SELECT * FROM pacientes WHERE disponibilidad=0 `,(err,rows,fields)=>{
+        if(err)
+            console.error(err);
+        else{ 
+            for (const iterator of rows) {
+                              
+                    JSON1.push({
+                            
+                            id_paciente: iterator.id_paciente,
+                            nombre: iterator.nombre
+                        });    
+            }
+            setTimeout(()=>{
+                res.send(JSON1);
+            }, 100);
+        }
+    });
+});
+
+//fin de sacar lista pacientes
+
+//sacar lista de doctores activos
+app.post('/ListaDoctores', (req, res)=>{
+    let JSON2=[];
+    connection.query(`SELECT * FROM medico  WHERE disponibilidad=0 `,(err,rows,fields)=>{
+        if(err)
+            console.error(err);
+        else{ 
+            for (const iterator of rows) {
+                              
+                    JSON2.push({
+                            
+                            nombre: iterator.nombre
+                        });    
+            }
+            setTimeout(()=>{
+                res.send(JSON2);
+            }, 100);
+        }
+    });
+});
+
+
+
+//fin de sacar lista de doctores activos
 
 app.post('/consulta', (req, res)=>{
     let id_paciente=req.body.id_paciente;
