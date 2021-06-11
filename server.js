@@ -1,9 +1,31 @@
 const express = require('express');
-const session = require('express-session'); 
+const session = require('express-session');
+const fs = require('fs');
+const path = require('fs');
+const https = require('https'); 
+let certificate = fs.readFileSync('./sslcert/server.crt', 'utf8');
+let privateKey  = fs.readFileSync('./sslcert/key.pem', 'utf8');
+let credentials = {key: privateKey, cert: certificate};
 let app = express();
+
+let httpsServer = https.createServer(credentials, app);
+
+const io = require('socket.io')(httpsServer);
+
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static(__dirname+'/consulta-medica/dist/consulta-medica'));
+
+io.on('connection', socket => {
+    socket.on('join-room', (roomId, userId) => {
+        socket.join(roomId);
+        socket.to(roomId).broadcast.emit('user-connected', userId);
+
+        socket.on('disconnect', () => {
+            socket.to(roomId).broadcast.emit('user-disconnected', userId);
+        });
+    });
+});
 
 app.use(session({
   
@@ -29,21 +51,22 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res)=>{
-   // console.log('Request: ' +(req.body));
-   setTimeout(()=>{
-    req.session=ses;
-    ses=req.session;
-    console.log('Antes: '+ses);
-    if(ses.rl!=true)
-        ses.rl=true;
-    else
-        ses.rl=false
-    console.log('Despues: '+ses);
-    //res.sendFile(__dirname+'/consulta-medica/src/index.html');
-    console.log(ses.usuario);
-    console.log(ses);
-    res.send(ses );
-}, 50);
+    res.sendFile(__dirname+'/consulta-medica/src/index.html');
+    // console.log('Request: ' +(req.body));
+    setTimeout(()=>{
+        req.session=ses;
+        ses=req.session;
+        console.log('Antes: '+ses);
+        if(ses.rl!=true)
+            ses.rl=true;
+        else
+            ses.rl=false
+        console.log('Despues: '+ses);
+        
+        console.log(ses.usuario);
+        console.log(ses);
+        res.send(ses );
+    }, 50);
   
 });
 
@@ -354,8 +377,7 @@ app.post('/consultaMedico', (req, res)=>{
 
 });
 
-let server = app.listen("8081", "127.0.0.1", function(){
-
+let server = httpsServer.listen("8081", function(){
     let host = server.address().address;
     let port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);
