@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res)=>{
-   // console.log('Request: ' +(req.body));
+    console.log('Request: ' +(req.body));
    setTimeout(()=>{
     req.session=ses;
     ses=req.session;
@@ -48,7 +48,7 @@ app.get('/', (req, res)=>{
 });
 
 app.post ('/rl',(req, res)=>{
-    // console.log('Request: ' +(req.body));
+  console.log('Request: ' +(req.body));
     req.session=ses;
     ses=req.session;
     ses.rl=req.rl;
@@ -274,7 +274,7 @@ app.post('/registrarPersonal', (req, res)=>{
 //sacar lista de pacientes
 app.post('/ListaPacientes', (req, res)=>{
     let JSON1=[];
-    connection.query(`SELECT * FROM pacientes WHERE disponibilidad=0 `,(err,rows,fields)=>{
+    connection.query(`SELECT * FROM paciente WHERE disponibilidad=0 `,(err,rows,fields)=>{
         if(err)
             console.error(err);
         else{ 
