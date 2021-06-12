@@ -24,4 +24,8 @@ export class LoginService {
     return this.webReqService.post('rl',JSON); 
   }
 
+  CloseSes(){
+    return this.webReqService.get('CerrarSes');
+  }
+
 }
