@@ -37,7 +37,7 @@ export class VistaEnfermeraComponent implements OnInit {
 
       let JSON2={};
 
-      this.listP.listapacientes(JSON2).subscribe((response:any)=>{
+      this.listD.listadoctores(JSON2).subscribe((response:any)=>{
         for (const iterator of response) {
           let doctor=new Doctor(iterator.nombre);
           this.doctores.push(doctor);

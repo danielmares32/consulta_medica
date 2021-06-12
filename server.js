@@ -44,6 +44,22 @@ app.get('/', (req, res)=>{
     console.log(ses);
     res.send(ses );
 }, 50);
+    res.sendFile(__dirname+'/consulta-medica/src/index.html');
+    // console.log('Request: ' +(req.body));
+    setTimeout(()=>{
+        req.session=ses;
+        ses=req.session;
+        console.log('Antes: '+ses);
+        if(ses.rl!=true)
+            ses.rl=true;
+        else
+            ses.rl=false
+        console.log('Despues: '+ses);
+        
+        console.log(ses.usuario);
+        console.log(ses);
+        res.send(ses );
+    }, 50);
   
 });
 
@@ -355,7 +371,6 @@ app.post('/consultaMedico', (req, res)=>{
 });
 
 let server = app.listen("8081", "127.0.0.1", function(){
-
     let host = server.address().address;
     let port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);
