@@ -29,10 +29,11 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res)=>{
-    console.log('Request: ' +(req.body));
-   setTimeout(()=>{
     req.session=ses;
     ses=req.session;
+    console.log('Request: ' +(req.body));
+   setTimeout(()=>{
+ 
     console.log('Antes: '+ses);
     if(ses.rl!=true)
         ses.rl=true;
