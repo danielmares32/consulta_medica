@@ -29,31 +29,37 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res)=>{
-   // console.log('Request: ' +(req.body));
-   try{
+    console.log('Request: ' +(req.body));
+   setTimeout(()=>{
+    req.session=ses;
+    ses=req.session;
+    console.log('Antes: '+ses);
+    if(ses.rl!=true)
+        ses.rl=true;
+    else
+        ses.rl=false
+    console.log('Despues: '+ses);
+    //res.sendFile(__dirname+'/consulta-medica/src/index.html');
+    console.log(ses.usuario);
+    console.log(ses);
+    res.send(ses );
+}, 50);
+    res.sendFile(__dirname+'/consulta-medica/src/index.html');
+    // console.log('Request: ' +(req.body));
     setTimeout(()=>{
-        try{
-            req.session=ses;
-            ses=req.session;
-            console.log('Antes: '+ses);
-            if(ses.rl!=true)
-                ses.rl=true;
-            else
-                ses.rl=false
-            console.log('Despues: '+ses);
-            //res.sendFile(__dirname+'/consulta-medica/src/index.html');
-            console.log(ses.usuario);
-            console.log(ses);
-            res.send(ses );
-        }catch(e){
-
-        }
+        req.session=ses;
+        ses=req.session;
+        console.log('Antes: '+ses);
+        if(ses.rl!=true)
+            ses.rl=true;
+        else
+            ses.rl=false
+        console.log('Despues: '+ses);
         
+        console.log(ses.usuario);
+        console.log(ses);
+        res.send(ses );
     }, 50);
-   }catch(e){
-        console.log(e);
-   }
-  
   
 });
 
@@ -68,7 +74,7 @@ app.get('/CerrarSes', (req, res)=>{
  });
 
 app.post ('/rl',(req, res)=>{
-    // console.log('Request: ' +(req.body));
+  console.log('Request: ' +(req.body));
     req.session=ses;
     ses=req.session;
     ses.rl=req.rl;
@@ -82,7 +88,7 @@ const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: '',
     database: 'consulta_medica'
 }); 
 connection.connect();
@@ -291,6 +297,55 @@ app.post('/registrarPersonal', (req, res)=>{
     
 });
 
+//sacar lista de pacientes
+app.post('/ListaPacientes', (req, res)=>{
+    let JSON1=[];
+    connection.query(`SELECT * FROM paciente WHERE disponibilidad=0 `,(err,rows,fields)=>{
+        if(err)
+            console.error(err);
+        else{ 
+            for (const iterator of rows) {
+                              
+                    JSON1.push({
+                            
+                            id_paciente: iterator.id_paciente,
+                            nombre: iterator.nombre
+                        });    
+            }
+            setTimeout(()=>{
+                res.send(JSON1);
+            }, 100);
+        }
+    });
+});
+
+//fin de sacar lista pacientes
+
+//sacar lista de doctores activos
+app.post('/ListaDoctores', (req, res)=>{
+    let JSON2=[];
+    connection.query(`SELECT * FROM medico  WHERE disponibilidad=0 `,(err,rows,fields)=>{
+        if(err)
+            console.error(err);
+        else{ 
+            for (const iterator of rows) {
+                              
+                    JSON2.push({
+                            
+                            nombre: iterator.nombre
+                        });    
+            }
+            setTimeout(()=>{
+                res.send(JSON2);
+            }, 100);
+        }
+    });
+});
+
+
+
+//fin de sacar lista de doctores activos
+
 app.post('/consulta', (req, res)=>{
     let id_paciente=req.body.id_paciente;
     let peso=req.body.peso;
@@ -326,7 +381,6 @@ app.post('/consultaMedico', (req, res)=>{
 });
 
 let server = app.listen("8081", "127.0.0.1", function(){
-
     let host = server.address().address;
     let port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);
