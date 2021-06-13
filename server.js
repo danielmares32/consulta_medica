@@ -81,7 +81,7 @@ const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: '',
     database: 'consulta_medica'
 }); 
 connection.connect();
@@ -301,7 +301,7 @@ app.post('/ListaPacientes', (req, res)=>{
                               
                     JSON1.push({
                             
-                            id_paciente: iterator.id_paciente,
+                            id_paciente: iterator.id,
                             nombre: iterator.nombre
                         });    
             }
