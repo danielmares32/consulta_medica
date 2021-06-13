@@ -31,6 +31,8 @@ app.use(function(req, res, next) {
 app.get('/', (req, res)=>{
     req.session=ses;
     ses=req.session;
+   
+    
     console.log('Request: ' +(req.body));
    setTimeout(()=>{
  
@@ -45,22 +47,7 @@ app.get('/', (req, res)=>{
     console.log(ses);
     res.send(ses );
 }, 50);
-    res.sendFile(__dirname+'/consulta-medica/src/index.html');
-    // console.log('Request: ' +(req.body));
-    setTimeout(()=>{
-        req.session=ses;
-        ses=req.session;
-        console.log('Antes: '+ses);
-        if(ses.rl!=true)
-            ses.rl=true;
-        else
-            ses.rl=false
-        console.log('Despues: '+ses);
-        
-        console.log(ses.usuario);
-        console.log(ses);
-        res.send(ses );
-    }, 50);
+  
   
 });
 
@@ -89,7 +76,7 @@ const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'password',
     database: 'consulta_medica'
 }); 
 connection.connect();
