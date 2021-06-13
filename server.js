@@ -30,22 +30,42 @@ app.use(function(req, res, next) {
 
 app.get('/', (req, res)=>{
    // console.log('Request: ' +(req.body));
-   setTimeout(()=>{
-    req.session=ses;
-    ses=req.session;
-    console.log('Antes: '+ses);
-    if(ses.rl!=true)
-        ses.rl=true;
-    else
-        ses.rl=false
-    console.log('Despues: '+ses);
-    //res.sendFile(__dirname+'/consulta-medica/src/index.html');
-    console.log(ses.usuario);
-    console.log(ses);
-    res.send(ses );
-}, 50);
+   try{
+    setTimeout(()=>{
+        try{
+            req.session=ses;
+            ses=req.session;
+            console.log('Antes: '+ses);
+            if(ses.rl!=true)
+                ses.rl=true;
+            else
+                ses.rl=false
+            console.log('Despues: '+ses);
+            //res.sendFile(__dirname+'/consulta-medica/src/index.html');
+            console.log(ses.usuario);
+            console.log(ses);
+            res.send(ses );
+        }catch(e){
+
+        }
+        
+    }, 50);
+   }catch(e){
+        console.log(e);
+   }
+  
   
 });
+
+app.get('/CerrarSes', (req, res)=>{
+    req.session.destroy();
+    ses.destroy();   
+    req.session=null;
+    ses=null;
+    console.log('Despues de destruir');
+    console.log(ses);
+    
+ });
 
 app.post ('/rl',(req, res)=>{
     // console.log('Request: ' +(req.body));
