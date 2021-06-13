@@ -33,11 +33,14 @@ app.get('/', (req, res)=>{
     ses=req.session;
    
     
+   
+    
     console.log('Request: ' +(req.body));
    setTimeout(()=>{
  
     console.log('Antes: '+ses);
-    if(ses.rl!=true)
+    if(ses!=null){
+        if(ses.rl!=true)
         ses.rl=true;
     else
         ses.rl=false
@@ -46,6 +49,8 @@ app.get('/', (req, res)=>{
     console.log(ses.usuario);
     console.log(ses);
     res.send(ses );
+    }
+   
 }, 50);
   
   
