@@ -20,6 +20,8 @@ import { HisorialConsultasComponent } from './medico/hisorial-consultas/hisorial
 import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/consultas-disponibles.component';
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 import { RecetaComponent } from './medico/receta/receta.component';
+import { RoomComponent } from './room/room.component';
+import { SocketIoModule } from "ngx-socket-io";
 
 const routes:Routes = [
   {path: 'inicio', component: LoginComponent}
@@ -40,7 +42,8 @@ const routes:Routes = [
     HisorialConsultasComponent,
     ConsultasDisponiblesComponent,
     ActualizarExpedienteComponent,
-    RecetaComponent
+    RecetaComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,10 @@ const routes:Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot({
+      url: '/'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

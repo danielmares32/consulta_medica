@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
 import { ConsultasDisponiblesService } from '../consultas-disponibles.service';
+import {Router} from "@angular/router";
+import { LoginService } from '../../login.service'
 
 @Component({
   selector: 'app-consultas-disponibles',
@@ -11,11 +12,19 @@ import { ConsultasDisponiblesService } from '../consultas-disponibles.service';
 
 export class ConsultasDisponiblesComponent implements OnInit {
   consultas:Array<Consulta>;
-  constructor(private consDisService:ConsultasDisponiblesService) {
+  idMedico:number=0;
+  constructor(private consDisService:ConsultasDisponiblesService,private router: Router,private logService: LoginService) {
     this.consultas=new Array<Consulta>();
   }
 
   ngOnInit(): void {
+    this.logService.sendSesion().subscribe((response: any)=>{
+      console.log(JSON.stringify(response));
+      this.idMedico= Number.parseInt(response.idu) ;
+      console.log(this.idMedico);
+    });
+
+
     let JSON1;
     JSON1={};
     this.consDisService.consultasdisponibles(JSON1).subscribe((response:any)=>{
@@ -24,6 +33,16 @@ export class ConsultasDisponiblesComponent implements OnInit {
         this.consultas.push(consulta);
       }
     });
+  }
+
+  createRoom(idCons:number){
+    let JSON2={
+      idConsulta:idCons,
+      idMedico:this.idMedico
+    };
+    this.consDisService.llamandoPaciente(JSON2);
+    this.router.navigate([`/${idCons}`]);
+
   }
 
 }

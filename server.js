@@ -1,6 +1,13 @@
 const express = require('express');
 const session = require('express-session'); 
 let app = express();
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static(__dirname+'/consulta-medica/dist/consulta-medica'));
@@ -21,39 +28,24 @@ app.use(session({
 
 var ses;
 
-app.use(function(req, res, next) {
-
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
 app.get('/', (req, res)=>{
     req.session=ses;
     ses=req.session;
-   
-    
-   
-    
     console.log('Request: ' +(req.body));
-   setTimeout(()=>{
- 
-    console.log('Antes: '+ses);
-    if(ses!=null){
-        if(ses.rl!=true)
-        ses.rl=true;
-    else
-        ses.rl=false
-    console.log('Despues: '+ses);
-    //res.sendFile(__dirname+'/consulta-medica/src/index.html');
-    console.log(ses.usuario);
-    console.log(ses);
-    res.send(ses );
-    }
-   
-}, 50);
-  
-  
+    setTimeout(()=>{
+        console.log('Antes: '+ses);
+        if(ses!=null){
+            if(!ses.rl)
+                ses.rl=true;
+            else
+                ses.rl=false
+        console.log('Despues: '+ses);
+        //res.sendFile(__dirname+'/consulta-medica/src/index.html');
+        console.log(ses.usuario);
+        console.log(ses);
+        res.send(ses);
+        }
+    }, 50);  
 });
 
 app.get('/CerrarSes', (req, res)=>{
@@ -87,6 +79,49 @@ let connection = mysql.createConnection({
 connection.connect();
 
 //API's
+
+app.post('/llamadas', (req, res)=>{
+    let JSON1=[];
+    connection.query(`SELECT * FROM diagnostico WHERE enfermedad IS NULL`,(err,rows,fields)=>{
+        if(err)
+            console.error(err);
+        else{ 
+            for (const iterator of rows) {
+                connection.query(`SELECT nombre FROM paciente WHERE id='${iterator.id_paciente}'`, (err2, rows2, fields2) => {
+                    if (err2)
+                        console.error(err2);
+                    else {
+                        JSON1.push({
+                            id: iterator.id,
+                            id_paciente: iterator.id_paciente,
+                            peso: iterator.peso,
+                            talla: iterator.talla,
+                            temperatura: iterator.temperatura,
+                            presion_arterial: iterator.presion_arterial,
+                            pulso_cardiaco: iterator.pulso_cardiaco,
+                            fecha: iterator.fecha,
+                            nombre: rows2[0].nombre
+                        });
+                    }
+                });
+            }
+            setTimeout(()=>{
+                res.send(JSON1);
+            }, 100);
+        }
+    });
+});
+
+app.post('/llamandoPaciente', (req, res)=>{
+    let idConsulta=req.body.idConsulta;
+    let idMedico=req.body.idConsulta;
+    connection.query(`UPDATE diagnostico SET id_medico='${idMedico}' WHERE id='${idConsulta}'`, (err, rows, fields)=>{
+        if(err)
+            console.error(err);
+        else
+            res.send('{"message":"Correcto"}');
+    });
+});
 
 app.post('/agregarReceta', (req,res)=>{
     let idDiagnostico=req.body.idDiagnostico;
