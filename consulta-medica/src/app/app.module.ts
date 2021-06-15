@@ -21,7 +21,7 @@ import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/co
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 import { RecetaComponent } from './medico/receta/receta.component';
 import { RoomComponent } from './room/room.component';
-import { SocketIoModule } from "ngx-socket-io";
+//import { SocketIoModule } from "ngx-socket-io";
 
 const routes:Routes = [
   {path: 'inicio', component: LoginComponent}
