@@ -32,6 +32,15 @@ export class AppComponent implements OnInit {
     }
     
   }
+
+  cerrarSes(){
+    this.logService.CloseSes().subscribe((response:any)=>{
+      
+    });
+    setTimeout(()=>{
+    window.location.reload();
+    },50);
+  }
   
 
   

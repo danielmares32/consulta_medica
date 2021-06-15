@@ -13,7 +13,7 @@ export class HisorialConsultasComponent implements OnInit {
     
     //this.idMedico=2; //Se recopilará de las sesiones
     this.consultas=new Array<Consulta>();
-  }
+  } 
 
   ngOnInit(): void {
     this.logService.sendSesion().subscribe((response: any)=>{

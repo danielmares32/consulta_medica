@@ -11,5 +11,9 @@ export class ConsultasDisponiblesService {
     console.log(JSON);
     return this.webReqService.post('consultasDisponibles',JSON);
   }
+  llamandoPaciente(JSON: Object):any{
+    console.log(JSON);
+    return this.webReqService.post('llamandoPaciente',JSON);
+  }
 }
 
