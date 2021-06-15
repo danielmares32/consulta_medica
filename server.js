@@ -1,6 +1,13 @@
+const fs = require('fs');
+const https = require('https');
 const express = require('express');
 const session = require('express-session'); 
 let app = express();
+let certificate = fs.readFileSync('./sslcert/server.crt','utf-8');
+let privateKey = fs.readFileSync('./sslcert/key.pem', 'utf-8');
+let credentials = { key: privateKey, cert: certificate };
+let httpsServer = https.createServer(credentials, app);
+const io = require('socket.io')(httpsServer);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
@@ -408,7 +415,17 @@ app.post('/consultaMedico', (req, res)=>{
 
 });
 
-let server = app.listen("8081", "127.0.0.1", function(){
+io.on('connection', (socket)=>{
+    socket.on('join-room', (roomId, userId) => {
+        socket.join(roomId);
+        socket.to(roomId).broadcast.emit('user-connected', userId);
+        socket.on('disconnect', ()=>{
+            socket.to(roomId).broadcast.emit('user-disconnected', userId);
+        })
+    })
+})
+
+let server = httpsServer.listen("8081", "127.0.0.1", function(){
     let host = server.address().address;
     let port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);

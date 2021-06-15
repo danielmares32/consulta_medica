@@ -41,7 +41,7 @@ export class ConsultasDisponiblesComponent implements OnInit {
       idMedico:this.idMedico
     };
     this.consDisService.llamandoPaciente(JSON2);
-    this.router.navigate([`/${idCons}`]);
+    this.router.navigate([`/room/${idCons}`]);
 
   }
 
