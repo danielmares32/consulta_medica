@@ -21,6 +21,8 @@ import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/co
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 import { RecetaComponent } from './medico/receta/receta.component';
 import { ExamLabComponent } from './exam-lab/exam-lab.component';
+import { RoomComponent } from './room/room.component';
+import { SocketIoModule } from "/ngx-socket-io";
 
 const routes:Routes = [
   {path: 'inicio', component: LoginComponent}
@@ -42,7 +44,8 @@ const routes:Routes = [
     ConsultasDisponiblesComponent,
     ActualizarExpedienteComponent,
     RecetaComponent,
-    ExamLabComponent
+    ExamLabComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,10 @@ const routes:Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    SocketIoModule.forRoot({
+      url: '/'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

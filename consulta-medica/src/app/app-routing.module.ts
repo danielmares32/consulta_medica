@@ -6,13 +6,15 @@ import { RegistroComponent } from './registro/registro.component';
 import { MedicoComponent } from './medico/medico.component';
 import { PersonalComponent } from './personal/personal.component';
 import  { RegistroPacienteComponent } from './registro-paciente/registro-paciente.component';
-import {ConsultaComponent} from './consulta/consulta.component';
-import {VistaEnfermeraComponent} from './vista-enfermera/vista-enfermera.component';
+import { ConsultaComponent } from './consulta/consulta.component';
+import { VistaEnfermeraComponent } from './vista-enfermera/vista-enfermera.component';
 import { HisorialConsultasComponent } from './medico/hisorial-consultas/hisorial-consultas.component';
 import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/consultas-disponibles.component';
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 import { RecetaComponent } from './medico/receta/receta.component';
 import { ExamLabComponent, } from './exam-lab/exam-lab.component';
+import { RoomComponent } from './room/room.component';
+
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -27,7 +29,8 @@ const routes: Routes = [
   { path: 'consultasDisponibles', component: ConsultasDisponiblesComponent },
   { path: 'actualizarExpediente', component: ActualizarExpedienteComponent },
   { path: 'receta', component:RecetaComponent },
-  {path: 'regisLab', component: ExamLabComponent}
+  {path: 'regisLab', component: ExamLabComponent},
+  { path: 'room:idConsulta', component:RoomComponent }
 ];
 
 @NgModule({
