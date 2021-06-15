@@ -20,6 +20,7 @@ import { HisorialConsultasComponent } from './medico/hisorial-consultas/hisorial
 import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/consultas-disponibles.component';
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 import { RecetaComponent } from './medico/receta/receta.component';
+import { ExamLabComponent } from './exam-lab/exam-lab.component';
 
 const routes:Routes = [
   {path: 'inicio', component: LoginComponent}
@@ -40,7 +41,8 @@ const routes:Routes = [
     HisorialConsultasComponent,
     ConsultasDisponiblesComponent,
     ActualizarExpedienteComponent,
-    RecetaComponent
+    RecetaComponent,
+    ExamLabComponent
   ],
   imports: [
     BrowserModule,

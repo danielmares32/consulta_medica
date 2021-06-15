@@ -1,18 +1,19 @@
 <div class="container">
     
     <a id="liga" routerLink="/registroP" >Registrar Paciente</a>
+    <a id="liga" routerLink="/regisLab" >Registrar Analisis</a>
     <br><br><br>
     <div class="row">
         <div class=" col-md-6 horizontal-scrollable text-wrap " id="DOCTORES">
-            <p>DOCTORES EN LÍNEA</p>
+            <p>Pacientes en espera de consulta</p>
             <div *ngFor="let elemento of doctores">
                 <p>{{elemento.nombreD}}</p>
             </div>
         </div>
         <div class=" col-md-6 horizontal-scrollable text-wrap " id="Pacientes">
-            <p>PACIENTES EN LISTA</p>
+            <p>Pacientes por llenar Formulario</p>
             <div *ngFor="let elemento of pacientes">
-                <p>{{elemento.nombreP}} ID: {{elemento.idPaciente}} <a id="btn_consulta" routerLink="/consulta">Consulta</a></p>
+                <p>{{elemento.nombreP}} ID: {{elemento.idPaciente}} <a id="btn_consulta" routerLink="/consulta">Formulario de consulta</a></p>
             </div>
                
         </div>

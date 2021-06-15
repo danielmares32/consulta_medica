@@ -1,9 +1,11 @@
 const express = require('express');
 const session = require('express-session'); 
+const fileUpload= require('express-fileupload');
 let app = express();
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static(__dirname+'/consulta-medica/dist/consulta-medica'));
+app.use(fileUpload);
 
 app.use(session({
   
@@ -289,6 +291,44 @@ app.post('/registrarPersonal', (req, res)=>{
     });
     
 });
+//registrolab
+app.post('/registrarAnalisis', (req, res)=>{
+   
+    let archivo;
+    let uploadPath;
+    let id_paciente;
+    let tipo;
+    let fecha;
+  
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+  
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    archivo = req.files.archivo;
+    id_paciente=req.body.idp;
+    tipo=req.body.tipo;
+    fecha=req.body.fecha;
+    uploadPath = __dirname + './analisis' + sampleFile.name;
+  
+    // Use the mv() method to place the file somewhere on your server
+    sampleFile.mv(uploadPath, function(err) {
+      if (err)
+        return res.status(500).send(err);
+  
+      res.send('File uploaded!');
+
+
+    });
+    connection.query(`INSERT INTO resultados_laboratorio (id_paciente,documento,tipo_de_analisis,fecha) VALUES(${id_paciente},'${ uploadPath}','${tipo}','${fecha}')`,(err,rows,fields)=>{
+        if(err)
+            console.error(err);
+        else    
+            res.send('{"message":"Correcto"}');
+    });
+});
+//fin del registrolab
+
 
 //sacar lista de pacientes
 app.post('/ListaPacientes', (req, res)=>{
@@ -317,7 +357,7 @@ app.post('/ListaPacientes', (req, res)=>{
 //sacar lista de doctores activos
 app.post('/ListaDoctores', (req, res)=>{
     let JSON2=[];
-    connection.query(`SELECT * FROM medico  WHERE disponibilidad=0 `,(err,rows,fields)=>{
+    connection.query(`SELECT * FROM pacientes  WHERE disponibilidad=1 `,(err,rows,fields)=>{
         if(err)
             console.error(err);
         else{ 
@@ -351,6 +391,14 @@ app.post('/consulta', (req, res)=>{
         `INSERT INTO diagnostico (id_paciente,peso,talla,temperatura,presion_arterial,
         pulso_cardiaco,fecha) VALUES('${id_paciente}','${peso}','${talla}','${temperatura}',
         '${presion_arterial}','${pulso_cardiaco}','${fecha}')`, (err, rows,fields)=>{
+            if(err)
+                console.error(err);
+            else
+                res.send('{"message":"Correcto"}');
+    });
+
+    connection.query(
+        `UPDATE paciente disponibilidad=1 WHERE id_paciente='${id_paciente}'`,(err, rows,fields)=>{
             if(err)
                 console.error(err);
             else

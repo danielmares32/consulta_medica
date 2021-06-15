@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="imagen"><a routerLink="/vistaE"><img class="imagen" src="assets/RB1.png" alt=""></a></div>
+    <h1>Registro de analisis</h1>
+        <form action="http://127.0.0.1:8081/registrarAnalisis" method="POST">
+            <div class="form-group">
+                <label class="label" for="idp" >ID del paciente</label>
+                <input name="idp" id="idp" type="text" placeholder="id del paciente" class="form-control">
+                <label class="label" for="fecha" >Fecha</label>
+                <input name="fecha" id="fecha"  type="text" placeholder="Fecha" class="form-control">
+                <label class="label" for="tipo" >Tipo de analisis</label>
+                <input name="tipo" id="tipo"  type="text" placeholder="Tipo de analisis" class="form-control">
+                <label class="label" for="archivo" >Subir Analisisi</label>
+                <input name="archivo" id="archivo"  type="file" placeholder="Nombre" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" >Registrar analisis</button>
+        </form>
+    </div>

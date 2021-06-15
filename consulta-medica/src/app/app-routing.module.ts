@@ -12,6 +12,7 @@ import { HisorialConsultasComponent } from './medico/hisorial-consultas/hisorial
 import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/consultas-disponibles.component';
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 import { RecetaComponent } from './medico/receta/receta.component';
+import { ExamLabComponent, } from './exam-lab/exam-lab.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'historialConsultas', component: HisorialConsultasComponent },
   { path: 'consultasDisponibles', component: ConsultasDisponiblesComponent },
   { path: 'actualizarExpediente', component: ActualizarExpedienteComponent },
-  { path: 'receta', component:RecetaComponent }
+  { path: 'receta', component:RecetaComponent },
+  {path: 'regisLab', component: ExamLabComponent}
 ];
 
 @NgModule({
