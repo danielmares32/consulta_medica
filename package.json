@@ -1,0 +1,32 @@
+{
+  "name": "consultamedica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielmares32/consulta_medica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielmares32/consulta_medica/issues"
+  },
+  "homepage": "https://github.com/danielmares32/consulta_medica#readme",
+  "dependencies": {
+    "@angular/cli": "^12.0.1",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^5.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "jquery": "^3.6.0",
+    "mysql": "^2.18.1",
+    "mysql-await": "^2.1.8",
+    "socket.io": "^4.1.2",
+    "sync-mysql": "^3.0.1",
+    "sync-sql": "^1.0.2"
+  }
+}

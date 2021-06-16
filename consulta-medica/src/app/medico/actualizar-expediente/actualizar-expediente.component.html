@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Agregar Consulta al Expediente Clínico</h1>
+    <form action="">
+        <div class="form-group">
+            <label class="label" for="nombreEnfermedad">Nombre de la Enfermedad</label>
+            <input [(ngModel)]="enfermedad" class="form-control" type="text" id="nombreEnfermedad" name="nombreEnfermedad" placeholder="Nombre de la Enfermedad">
+            <label class="label" for="descripcion">Descripción de la Enfermedad</label>
+            <textarea [(ngModel)]="descripcion" class="form-control" rows="7" id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
+        </div>
+        <button type="submit" (click)="agregarConsulta()" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
+
+
+

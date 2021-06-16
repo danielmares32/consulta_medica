@@ -1,0 +1,36 @@
+@font-face {
+    font-family: noto;
+    src: url('/assets/Noto.ttf');
+}
+h1,h2{
+    font-family: noto;
+    text-align: center;
+    padding: 15px;
+}
+p{
+    font-family: noto;
+    text-align: center;
+    font-size: large;
+}
+#noticias{
+    background-color: rgb(104, 131, 120);
+    height: 500px;
+}
+#noticia{
+    font-family: noto;
+    font-size: large;
+    margin: 30px;
+    margin-left: 52.5px;
+    background-color: beige;
+    height: 400px;
+    padding: 10px;
+}
+.horizontal-scrollable > .row {
+    overflow: auto;
+    white-space: nowrap;
+    height: 500px;
+}          
+.horizontal-scrollable > .row > .col-lg-3 {
+    display: inline-block;
+    float: none;
+}

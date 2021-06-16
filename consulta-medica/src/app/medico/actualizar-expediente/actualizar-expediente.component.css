@@ -1,0 +1,37 @@
+@font-face {
+    font-family: noto;
+    src: url('/assets/Noto.ttf');
+}
+h1,h2{
+    font-family: noto;
+    text-align: center;
+    padding: 15px;
+}
+p{
+    font-family: noto;
+    text-align: center;
+    font-size: large;
+}
+th,td{
+    font-family: noto;
+    text-align: center;
+}
+label{
+    font-weight: bold;
+    font-family: noto;
+    margin: 10px;
+}
+input{
+    font-family: noto;
+}
+button{
+    text-align: center;
+    font-family: noto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #C70039;
+    border-color: #C70039;
+}
+textarea{
+    font-family: noto;
+}

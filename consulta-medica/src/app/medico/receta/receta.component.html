@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Agregar Receta</h1>
+    <form action="">
+        <div class="form-group">
+            <label class="label" for="contenido">Receta</label>
+            <textarea [(ngModel)]="contenido" class="form-control" rows="10" id="contenido" name="contenido" placeholder="Contenido de la Receta"></textarea>
+        </div>
+        <button type="submit" (click)="agregarReceta()" class="btn btn-primary">Entrar</button>
+    </form>
+</div>
+

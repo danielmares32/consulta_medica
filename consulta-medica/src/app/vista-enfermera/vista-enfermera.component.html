@@ -1,0 +1,26 @@
+<div class="container">
+    
+    <a id="liga" routerLink="/registroP" >Registrar Paciente</a>
+    <br><br><br>
+    <div class="row">
+        <div class=" col-md-6 horizontal-scrollable text-wrap " id="DOCTORES">
+            <p>DOCTORES EN LÍNEA</p>
+            <div *ngFor="let elemento of doctores">
+                <p>{{elemento.nombreD}}</p>
+            </div>
+        </div>
+        <div class=" col-md-6 horizontal-scrollable text-wrap " id="Pacientes">
+            <p>PACIENTES EN LISTA</p>
+            <div *ngFor="let elemento of pacientes">
+                <p>{{elemento.nombreP}} ID: {{elemento.idPaciente}} <a id="btn_consulta" routerLink="/consulta">Consulta</a></p>
+            </div>
+               
+        </div>
+    </div>
+        <div>
+            
+            <router-outlet></router-outlet>
+        </div>
+    
+
+</div>

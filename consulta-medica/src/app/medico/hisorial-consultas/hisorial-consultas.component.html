@@ -1,0 +1,33 @@
+<div class="conteiner">
+    <h1>Historial de Consultas</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th scope="col">ID Consulta</th>
+                <th scope="col">Nombre del Paciente</th>
+                <th scope="col">ID del Paciente</th>
+                <th scope="col">Enfermedad</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Talla</th>
+                <th scope="col">Temperatura</th>
+                <th scope="col">Presión Arterial</th>
+                <th scope="col">Pulso Cardiaco</th>
+                <th scope="col">Fecha</th>
+            </tr>
+            <tr *ngFor="let elemento of consultas">
+                <td>{{elemento.idConsulta}}</td>
+                <td>{{elemento.nombrePaciente}}</td>
+                <td>{{elemento.idPaciente}}</td>
+                <td>{{elemento.enfermedad}}</td>
+                <td>{{elemento.descripcion}}</td>
+                <td>{{elemento.peso}}</td>
+                <td>{{elemento.talla}}</td>
+                <td>{{elemento.temperatura}}</td>
+                <td>{{elemento.presion}}</td>
+                <td>{{elemento.pulso}}</td>
+                <td>{{elemento.fecha.toLocaleString()}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
