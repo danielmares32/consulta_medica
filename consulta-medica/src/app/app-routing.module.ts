@@ -13,6 +13,7 @@ import { ConsultasDisponiblesComponent } from './medico/consultas-disponibles/co
 import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/actualizar-expediente.component';
 import { RecetaComponent } from './medico/receta/receta.component';
 import { RoomComponent } from './room/room.component';
+import { RegistroAnalisisComponent } from './registro-analisis/registro-analisis.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'consultasDisponibles', component: ConsultasDisponiblesComponent },
   { path: 'actualizarExpediente', component: ActualizarExpedienteComponent },
   { path: 'receta', component:RecetaComponent },
-  { path: 'room:idConsulta', component:RoomComponent }
+  { path: 'room:idConsulta', component:RoomComponent },
+  {path: 'registroLab', component: RegistroAnalisisComponent}
 ];
 
 @NgModule({
