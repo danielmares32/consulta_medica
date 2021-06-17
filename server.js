@@ -58,6 +58,10 @@ app.post('/', (req, res)=>{
     }, 50);  
 });
 
+app.get('/inicio', (req,res)=>{
+    res.sendFile(__dirname+'/consulta-medica/dist/consulta-medica/index.html');
+});
+
 app.get('/CerrarSes', (req, res)=>{
     req.session.destroy();
     ses.destroy();   
