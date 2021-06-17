@@ -1,7 +1,7 @@
 <div class="container">
    
     <h1>Registro de analisis</h1>
-        <form action="http://127.0.0.1:8081/registrarAnalisis" method="POST">
+        <form action="https://127.0.0.1:8081/registrarAnalisis" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label class="label" for="idp" >ID del paciente</label>
                 <input name="idp" id="idp" type="text" placeholder="id del paciente" class="form-control">
@@ -10,8 +10,8 @@
                 <label class="label" for="tipo" >Tipo de analisis</label>
                 <input name="tipo" id="tipo"  type="text" placeholder="Tipo de analisis" class="form-control">
                 <label class="label" for="archivo" >Subir Analisisi</label>
-                <input name="archivo" id="archivo"  type="file" placeholder="Nombre" class="form-control">
+                <input name="archivo" id="archivo"  type="file"  class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary" >Registrar analisis</button>
+            <input type="submit" class="btn btn-primary" value="Registrar analisis">
         </form>
     </div>

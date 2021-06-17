@@ -3,6 +3,7 @@ const https = require('https');
 const express = require('express');
 const session = require('express-session'); 
 const bodyParser = require('body-parser');
+const  fileUpload = require('express-fileupload');
 const mysql = require('mysql');
 let app = express();
 let certificate = fs.readFileSync('./sslcert/server.crt','utf-8');
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static(__dirname+'/consulta-medica/dist/consulta-medica'));
+app.use(fileUpload());
 
 app.use(session({
   
@@ -406,7 +408,7 @@ app.post('/registrarAnalisis', (req, res)=>{
     id_paciente=req.body.idp;
     tipo=req.body.tipo;
     fecha=req.body.fecha;
-    uploadPath = __dirname + './analisis' + sampleFile.name;
+    uploadPath = __dirname + './analisis' + archivo.name;
   
     // Use the mv() method to place the file somewhere on your server
     sampleFile.mv(uploadPath, function(err) {
