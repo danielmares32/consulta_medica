@@ -22,6 +22,7 @@ import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/ac
 import { RecetaComponent } from './medico/receta/receta.component';
 import { RoomComponent } from './room/room.component';
 import { SocketIoModule } from "ngx-socket-io";
+import { RegistroAnalisisComponent } from './registro-analisis/registro-analisis.component';
 
 const routes:Routes = [
   {path: 'inicio', component: LoginComponent}
@@ -43,7 +44,8 @@ const routes:Routes = [
     ConsultasDisponiblesComponent,
     ActualizarExpedienteComponent,
     RecetaComponent,
-    RoomComponent
+    RoomComponent,
+    RegistroAnalisisComponent
   ],
   imports: [
     BrowserModule,
