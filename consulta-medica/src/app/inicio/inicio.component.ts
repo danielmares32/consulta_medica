@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 })
 export class InicioComponent implements OnInit {
 
-  public usr=';';
+  public usr='';
   constructor(private logService: LoginService,private router:Router) { }
 
   ngOnInit(): void {

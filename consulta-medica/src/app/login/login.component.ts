@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   respuesta:string='';
   usrConect:string='';
   usrid:string='';
+  mensaje:string='';
+
   login(){
     let JSON1;
     JSON1={
@@ -31,7 +33,11 @@ export class LoginComponent implements OnInit {
       this.usrid=response.idusr;
       console.log(this.respuesta);
       console.log('respuesta login : '+JSON.stringify(this.respuesta));
+      if(this.respuesta=='true')
       this.router.navigate(['/inicio']);
+      else{
+        this.mensaje='Login incorrecto; revise mayúsculas en su usuario y su contraseña';
+      }
       //window.location.href='localhost:4200';
 
     });
