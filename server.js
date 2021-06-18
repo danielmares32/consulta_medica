@@ -391,40 +391,42 @@ app.post('/ListaDoctores', (req, res)=>{
 //fin de sacar lista de doctores activos
 
 //registrar analisis
-app.post('/registrarAnalisis', (req, res)=>{
-   
-    let archivo;
-    let uploadPath;
-    let id_paciente;
-    let tipo;
-    let fecha;
-  
-    if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send('No files were uploaded.');
-    }
-  
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    archivo = req.files.archivo;
-    id_paciente=req.body.idp;
-    tipo=req.body.tipo;
-    fecha=req.body.fecha;
-    uploadPath = __dirname + './analisis' + archivo.name;
-  
-    // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv(uploadPath, function(err) {
-      if (err)
-        return res.status(500).send(err);
-  
-      res.send('File uploaded!');
-
-
-    });
-    connection.query(`INSERT INTO resultados_laboratorio (id_paciente,documento,tipo_de_analisis,fecha) VALUES(${id_paciente},'${ uploadPath}','${tipo}','${fecha}')`,(err,rows,fields)=>{
+app.post('/registrarAnalisisDB', (req,res)=>{
+    let idPaciente=req.body.idPaciente;
+    let tipoAnalisis=req.body.tipoAnalisis;
+    let fecha=req.body.fecha;
+    let ruta=req.body.ruta;
+    connection.query(`INSERT INTO resultados_laboratorio (id_paciente,documento,tipo_de_analisis,fecha) VALUES(${idPaciente},'${ruta}','${tipoAnalisis}','${fecha}')`,(err,rows,fields)=>{
         if(err)
             console.error(err);
         else    
             res.send('{"message":"Correcto"}');
     });
+});
+
+app.post('/registrarAnalisis', (req, res)=>{
+   
+    let archivo;
+    let uploadPath;
+  
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+    console.log(req.files);
+    console.log(req.files.archivo);
+    console.log(req.files.archivo.name);
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    archivo = req.files.archivo;
+    uploadPath = `${__dirname}/analisisPacientes/${archivo.name}`;
+    
+    // Use the mv() method to place the file somewhere on your server
+    archivo.mv(uploadPath, function(err) {
+      console.log(uploadPath);
+      if (err)
+        return res.status(500).send(err);
+      res.send('{"message":"File uploaded!"}');
+    });
+    
 }); 
 //fin de registrar analisis
 

@@ -1,17 +1,16 @@
 <div class="container">
-   
     <h1>Registro de analisis</h1>
-        <form action="https://127.0.0.1:8081/registrarAnalisis" method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label class="label" for="idp" >ID del paciente</label>
-                <input name="idp" id="idp" type="text" placeholder="id del paciente" class="form-control">
+                <label class="label" for="idp">ID del paciente</label>
+                <input [(ngModel)]="idPaciente" name="idp" id="idp" type="text" placeholder="Id del paciente" class="form-control">
                 <label class="label" for="fecha" >Fecha</label>
-                <input name="fecha" id="fecha"  type="text" placeholder="Fecha" class="form-control">
+                <input [(ngModel)]="fecha" name="fecha" id="fecha" type="date" placeholder="Fecha" class="form-control">
                 <label class="label" for="tipo" >Tipo de analisis</label>
-                <input name="tipo" id="tipo"  type="text" placeholder="Tipo de analisis" class="form-control">
+                <input [(ngModel)]="tipoAnalisis" name="tipo" id="tipo"  type="text" placeholder="Tipo de analisis" class="form-control">
                 <label class="label" for="archivo" >Subir Analisisi</label>
-                <input name="archivo" id="archivo"  type="file"  class="form-control">
+                <input required (change)="handleFileInput($event)" name="archivo" id="archivo"  type="file"  class="form-control">
             </div>
-            <input type="submit" class="btn btn-primary" value="Registrar analisis">
+            <input type="submit" class="btn btn-primary" (click)="registrar()" value="Registrar analisis">
         </form>
     </div>
