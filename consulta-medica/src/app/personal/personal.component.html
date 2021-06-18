@@ -1,16 +1,16 @@
 <div class="container">
-    <h1>Registro de Personal</h1>
+    <h1 class="titulo">Registro de Personal</h1>
         <form action="http://127.0.0.1:8081/registrarPersonal" method="POST">
             <div class="form-group">
-                <label class="label" for="nombre" >Nombre</label>
+                <label class="fuente label" for="nombre" >Nombre</label>
                 <input name="nombre" id="nombre" [(ngModel)]="nombre" type="text" placeholder="Nombre" class="form-control">
-                <label class="label" for="usuario" >Usuario</label>
+                <label class="fuente label" for="usuario" >Usuario</label>
                 <input name="usuario" id="usuario" [(ngModel)]="usuario" type="text" placeholder="usuario" class="form-control">
-                <label class="label" for="contra" >contraseña</label>
+                <label class="fuente label" for="contra" >contraseña</label>
                 <input name="contra" id="contra" [(ngModel)]="contrasena" type="password" placeholder="contraseña" class="form-control">
-                <label class="correo" for="correo" >Correo</label>
-                <input name="correo" id="correo" [(ngModel)]="correo" type="text" placeholder="correo electronico" class="form-control">
-                <label class="label" for="tipo" >Tipo (Enfermera "E"/ Personal "P")</label>
+                <label class="fuente correo" for="correo" >Correo</label>
+                <input name="correo" id="correo" [(ngModel)]="correo" type="email" placeholder="correo electronico" class="form-control">
+                <label class="fuente label" for="tipo" >Tipo (Enfermera "E"/ Personal "P")</label>
                 <input name="tipo" id="tipo" [(ngModel)]="tipo" type="text" placeholder="tipo" class="form-control">
                 
             </div>

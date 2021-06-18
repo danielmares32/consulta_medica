@@ -1,6 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+
+
 @font-face {
     font-family: noto;
     src: url('/assets/Noto.ttf');
+}
+
+.titulo{
+    font-family: 'Viga', sans-serif;
+    color: #050B8B;
 }
 h1,h2{
     font-family: noto;
@@ -11,8 +21,13 @@ p{
     text-align: center;
     font-size: large;
 }
+
+table{
+width: 100%;
+table-layout: fixed;
+}
 #liga{
-    font-family: noto;
+    font-family: 'Viga',sans-serif;
     text-decoration: none;
     padding: 10px;
     background-color: #C70039;
@@ -24,11 +39,10 @@ p{
     background-color: #1A23F5;
 }
 
-#btn_consulta{
+.btn_for{
     text-decoration: none;
-    padding: 5px;
-    border-radius: 3px;
-    background-color:#B8B8C1;
+    padding: 0;
+    font-family: 'Hammersmith One',sans-serif;
     color: #070708;
 }
 
@@ -51,4 +65,9 @@ button{
     height: 40px;
     border-radius: 5px;
     margin: 15px;
+}
+
+.formato{
+    text-align: left;
+    font-family: 'Baloo Tammudu 2', sans-serif ;
 }

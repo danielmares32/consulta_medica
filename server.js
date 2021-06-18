@@ -4,6 +4,20 @@ const express = require('express');
 const session = require('express-session'); 
 const bodyParser = require('body-parser');
 const  fileUpload = require('express-fileupload');
+var mailer= require("nodemailer");
+const senderMail = "consultamedicaprof@gmail.com";
+
+const emailTransporter = mailer.createTransport({
+            
+            service:'gmail',
+            secure: false,
+            auth: {
+               user: senderMail,
+               pass: 'Proyecto6to'
+            },
+            debug: false,
+            logger: true 
+});
 const mysql = require('mysql');
 let app = express();
 let certificate = fs.readFileSync('./sslcert/server.crt','utf-8');
@@ -234,6 +248,7 @@ app.post('/actualizarExpediente', (req, res)=>{
 
 app.post('/registroMedico',(req, res)=>{
     console.log('post request');	
+   
     console.log(req.body);	
     let nombre=req.body.nombre;
     let usuario=req.body.usuario;
@@ -244,8 +259,16 @@ app.post('/registroMedico',(req, res)=>{
     connection.query(`INSERT INTO medico (nombre,usuario,correo,contraseña,disponibilidad) VALUES('${nombre}','${usuario}','${correo}','${contrasena}','${disponibilidad}')`, (err)=>{
         if(err)
             console.error(err);
-        else
-            res.end('{"message":"Correcto"}');
+        else{
+            //res.end('{"message":"Correcto"}');
+            
+var mailOptions = { from: '', to: correo, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/login\/' + usuario /*token.token*/ + '.\n' };
+            emailTransporter.sendMail(mailOptions, function (err) {
+                if (err) { return res.status(500).send({ msg: err.message }); } 
+                res.status(200).send('A verification email has been sent to ' + usuario + '.');
+            });
+        }
+            
     });
     
 });
@@ -321,7 +344,8 @@ app.post('/registrarPaciente', (req, res)=>{
         if(err)
             console.error(err);
         else    
-            res.send('{"message":"Correcto"}');
+            res.send('{"message":"Paciente Registrado"}');
+            
     });
     
 });
@@ -336,7 +360,8 @@ app.post('/registrarPersonal', (req, res)=>{
         if(err)
             console.error(err);
         else    
-            res.send('{"message":"Correcto"}');
+            res.send('{"message":"Personal Registrado"}');
+            
     });
     
 });

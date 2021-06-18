@@ -1,16 +1,16 @@
 <div class="container">
-    <h1>Registro de analisis</h1>
+    <h1 class="titulo">Registro de analisis</h1>
         <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label class="label" for="idp">ID del paciente</label>
+                <label class="fuente label" for="idp">ID del paciente</label>
                 <input [(ngModel)]="idPaciente" name="idp" id="idp" type="text" placeholder="Id del paciente" class="form-control">
-                <label class="label" for="fecha" >Fecha</label>
+                <label class="fuente label" for="fecha" >Fecha</label>
                 <input [(ngModel)]="fecha" name="fecha" id="fecha" type="date" placeholder="Fecha" class="form-control">
-                <label class="label" for="tipo" >Tipo de analisis</label>
+                <label class="fuente label" for="tipo" >Tipo de analisis</label>
                 <input [(ngModel)]="tipoAnalisis" name="tipo" id="tipo"  type="text" placeholder="Tipo de analisis" class="form-control">
-                <label class="label" for="archivo" >Subir Analisisi</label>
+                <label class="fuente label" for="archivo" >Subir Analisis</label>
                 <input required (change)="handleFileInput($event)" name="archivo" id="archivo"  type="file"  class="form-control">
             </div>
-            <input type="submit" class="btn btn-primary" (click)="registrar()" value="Registrar analisis">
+            <button type="submit" class="btn btn-primary" (click)="registrar()" >Registrar analisis</button>
         </form>
     </div>

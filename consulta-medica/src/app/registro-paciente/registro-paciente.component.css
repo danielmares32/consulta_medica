@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+
+
+
+.titulo{
+    font-family: 'Hammersmith One',sans-serif;
+}
 .imagen{
     width: 40px;
     height: 40px;
@@ -13,16 +21,19 @@ h1{
     padding: 15px;
 }
 label{
-    font-family: noto;
+    font-family: 'Viga';
+    color: #050B8B;
     margin: 10px;
 }
 input{
     font-family: noto;
 }
-button{
+.boton{
     text-align: center;
-    font-family: noto;
+    font-family: 'Viga',sans-serif;
     margin-top: 15px;
     margin-bottom: 15px;
     background-color: #C70039;
 }
+
+
