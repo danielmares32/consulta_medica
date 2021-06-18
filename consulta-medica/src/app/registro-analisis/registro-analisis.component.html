@@ -8,7 +8,7 @@
                 <input [(ngModel)]="fecha" name="fecha" id="fecha" type="date" placeholder="Fecha" class="form-control">
                 <label class="fuente label" for="tipo" >Tipo de analisis</label>
                 <input [(ngModel)]="tipoAnalisis" name="tipo" id="tipo"  type="text" placeholder="Tipo de analisis" class="form-control">
-                <label class="fuente label" for="archivo" >Subir Analisisi</label>
+                <label class="fuente label" for="archivo" >Subir Analisis</label>
                 <input required (change)="handleFileInput($event)" name="archivo" id="archivo"  type="file"  class="form-control">
             </div>
             <button type="submit" class="btn btn-primary" (click)="registrar()" >Registrar analisis</button>
