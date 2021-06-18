@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecetaService } from '../receta.service';
 
 @Component({
@@ -9,12 +10,15 @@ import { RecetaService } from '../receta.service';
 export class RecetaComponent implements OnInit {
   idDiagnostico:number;
   contenido:string;
-  constructor(private recService:RecetaService) {
-    this.idDiagnostico=4; //Se recuperará de las sesiones
+  constructor(private route: ActivatedRoute,private recService:RecetaService,private router: Router) {
+    this.idDiagnostico=0;
     this.contenido='';
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params:any)=>{
+      this.idDiagnostico=params.idConsulta;
+    });
   }
 
   agregarReceta(){
@@ -25,5 +29,8 @@ export class RecetaComponent implements OnInit {
     this.recService.receta(JSON1).subscribe((response:any)=>{
       alert(response.message);
     });
+    setTimeout(()=>{
+      this.router.navigate(['inicio']);
+    },100);
   }
 }

@@ -26,8 +26,8 @@ const routes: Routes = [
   { path: 'vistaE', component: VistaEnfermeraComponent},
   { path: 'historialConsultas', component: HisorialConsultasComponent },
   { path: 'consultasDisponibles', component: ConsultasDisponiblesComponent },
-  { path: 'actualizarExpediente', component: ActualizarExpedienteComponent },
-  { path: 'receta', component:RecetaComponent },
+  { path: 'actualizarExpediente/:idConsulta', component: ActualizarExpedienteComponent },
+  { path: 'receta/:idConsulta', component:RecetaComponent },
   { path: 'room/:idConsulta', component:RoomComponent },
   {path: 'registroLab', component: RegistroAnalisisComponent}
 ];

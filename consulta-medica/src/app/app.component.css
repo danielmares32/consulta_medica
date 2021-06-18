@@ -1,10 +1,14 @@
 @font-face {
-    font-family: noto;
-    src: url('/assets/Noto.ttf');
+  font-family: noto;
+  src: url('/assets/Noto.ttf');
 }
 a{
-    font-family: noto;
-    font-size:medium;
+  font-family: noto;
+  font-size:medium;
+}
+p{
+  font-family: noto;
+  font-size:medium;
 }
 footer {
   font-family: noto;

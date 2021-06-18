@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActualizarExpedienteService } from '../actualizar-expediente.service';
+import { LoginService } from 'src/app/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-actualizar-expediente',
@@ -11,14 +13,20 @@ export class ActualizarExpedienteComponent implements OnInit {
   idMedico:number;
   enfermedad:string;
   descripcion:string;
-  constructor(private actService: ActualizarExpedienteService) { 
-    this.idDiagnostico=4; //Se recopilará de las sesiones
-    this.idMedico=2; //Se recopilará de las sesiones
+  constructor(private route: ActivatedRoute,private actService: ActualizarExpedienteService, private logService: LoginService,private router: Router) { 
+    this.idDiagnostico=0;
+    this.idMedico=0;
     this.enfermedad='';
     this.descripcion='';
   }
 
   ngOnInit(): void {
+    this.logService.sendSesion().subscribe((response:any)=>{
+      this.idMedico=response.idu;
+    });
+    this.route.params.subscribe((params:any)=>{
+      this.idDiagnostico=params.idConsulta;
+    });
   }
 
   agregarConsulta(){
@@ -28,10 +36,13 @@ export class ActualizarExpedienteComponent implements OnInit {
       idMedico:this.idMedico,
       enfermedad:this.enfermedad,
       descripcion:this.descripcion
-    }
+    };
     this.actService.actualizarExpediente(JSON1).subscribe((response:any)=>{
       alert(response.message);
-    })
+    });
+    setTimeout(()=>{
+      this.router.navigate([`receta/${this.idDiagnostico}`]);
+    },100);
   }
 
 }

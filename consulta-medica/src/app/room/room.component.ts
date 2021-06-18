@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import { Socket } from "ngx-socket-io";
 import Peer from 'peerjs';
 import { LoginService } from '../login.service';
-//import Peer from "peerjs";
+import { Router } from "@angular/router";
 
 //declare const Peer=new Peer();
 
@@ -20,8 +20,9 @@ interface VideoElement {
 })
 export class RoomComponent implements OnInit {
   currentUserId:string = '0';
+  idConsulta:string = '0';
   videos: VideoElement[] = [];
-  constructor(private route: ActivatedRoute,private socket: Socket,private logService: LoginService) { }
+  constructor(private route: ActivatedRoute,private socket: Socket,private logService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.logService.sendSesion().subscribe((response: any)=>{
@@ -38,7 +39,7 @@ export class RoomComponent implements OnInit {
 
       this.route.params.subscribe((params) => {
         console.log('Por aca el roomid'+JSON.stringify(params));
-
+        this.idConsulta=params.idConsulta;
         myPeer.on('open', (userId:any) => {
           this.socket.emit('join-room', params.idConsulta, userId);
         });
@@ -123,6 +124,10 @@ export class RoomComponent implements OnInit {
 
   onLoadedMetadata(event: Event) {
     (event.target as HTMLVideoElement).play();
+  }
+
+  irExpediente(){
+    this.router.navigate([`actualizarExpediente/${this.idConsulta}`]);
   }
 
 }

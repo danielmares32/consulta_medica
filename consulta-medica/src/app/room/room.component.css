@@ -9,3 +9,8 @@ video {
   height: 90%;
   object-fit: cover;
 }
+
+button{
+  background-color: #C70039;
+  border-color: #C70039;
+}

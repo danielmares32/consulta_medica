@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'consulta-medica';
   public isMenuCollapsed=true;
   public isFirst=true;
-  public usr=';';
+  public usr='Invitado';
   public SesActiva=false;
   constructor(private logService: LoginService,private router:Router) { }
 
