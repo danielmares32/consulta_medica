@@ -23,8 +23,10 @@ export class RegistroPacienteComponent implements OnInit {
       
     }
     this.RegPService.crearRegistro(JSON).subscribe((response: any)=>{
-      console.log(response);
+      console.log(response);  
+      alert(response.message);
     });
+    
   } 
 
 }

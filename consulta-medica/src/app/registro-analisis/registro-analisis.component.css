@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+.fuente{
+    font-family: 'Viga', sans-serif;
+    color: #050B8B;
+}
+.titulo{
+    font-family: 'Hammersmith One',sans-serif;
+}
+button{
+    text-align: center;
+    font-family: 'Viga',sans-serif;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #C70039;
+}
