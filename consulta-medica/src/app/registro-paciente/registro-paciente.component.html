@@ -1,13 +1,13 @@
 <div class="container">
 <div class="imagen"><a routerLink="/vistaE"><img class="imagen" src="assets/RB1.png" alt=""></a></div>
-<h1>Registro de Pacientes</h1>
+<h1 class="titulo">Registro de Pacientes</h1>
     <form action="http://127.0.0.1:8081/registrarPaciente" method="POST">
         <div class="form-group">
-            <label class="label" for="nombre" >Nombre</label>
+            <label class="fuente label" for="nombre" >Nombre</label>
             <input name="nombre" id="nombre" [(ngModel)]="nombre" type="text" placeholder="Nombre" class="form-control">
-            <label class="label" for="fecha" >Fecha De Nacimiento</label>
+            <label class="fuente label" for="fecha" >Fecha De Nacimiento</label>
             <input name="fecha" id="fecha" [(ngModel)]="fecha_nacimiento" type="date" placeholder="Fecha De Nacimiento" class="form-control">
-            <label class="label" for="telefono" >Telefono</label>
+            <label class="fuente label" for="telefono" >Telefono</label>
             <input name="telefono" id="telefono" [(ngModel)]="telefono" type="text" placeholder="Telefono" class="form-control">
             <input type="hidden" name="disponibilidad" [(ngModel)]="disp" value="1">
         </div>
