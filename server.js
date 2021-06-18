@@ -321,7 +321,8 @@ app.post('/registrarPaciente', (req, res)=>{
         if(err)
             console.error(err);
         else    
-            res.send('{"message":"Correcto"}');
+            res.send('{"message":"Paciente Registrado"}');
+            
     });
     
 });
@@ -336,7 +337,8 @@ app.post('/registrarPersonal', (req, res)=>{
         if(err)
             console.error(err);
         else    
-            res.send('{"message":"Correcto"}');
+            res.send('{"message":"Personal Registrado"}');
+            
     });
     
 });

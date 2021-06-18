@@ -5,16 +5,19 @@
     <br><br><br>
     <div class="row">
         <div class=" col-md-6 horizontal-scrollable text-wrap " id="DOCTORES">
-            <p>DOCTORES EN LÍNEA</p>
+            <p class="titulo">Pacientes en espera de consulta</p>
             <div *ngFor="let elemento of doctores">
-                <p>{{elemento.nombreD}}</p>
+                <p class="formato">{{elemento.nombreD}}</p> 
             </div>
         </div>
         <div class=" col-md-6 horizontal-scrollable text-wrap " id="Pacientes">
-            <p>PACIENTES EN LISTA</p>
-            <div *ngFor="let elemento of pacientes">
-                <p>{{elemento.nombreP}} ID: {{elemento.idPaciente}} <a id="btn_consulta" routerLink="/consulta">Consulta</a></p>
-            </div>
+            <p class="titulo">Pacientes en espera de formulario</p>
+            <table *ngFor="let elemento of pacientes">
+                <tr> 
+                <td colspan="2" class="formato">{{elemento.nombreP}} <b> ID: {{elemento.idPaciente}}</b></td>  
+                <td><button class="btn_for btn btn-info"  routerLink="/consulta">Formulario</button></td>
+                </tr>
+        </table>
                
         </div>
     </div>

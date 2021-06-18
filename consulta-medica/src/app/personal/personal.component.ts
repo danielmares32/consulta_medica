@@ -28,6 +28,7 @@ export class PersonalComponent implements OnInit {
     }
     this.RegPerService.crearRegistro(JSON).subscribe((response: any)=>{
       console.log(response);
+      alert(response.message);
     });
   } 
 
