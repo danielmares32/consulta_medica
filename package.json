@@ -26,6 +26,7 @@
     "jquery": "^3.6.0",
     "mysql": "^2.18.1",
     "mysql-await": "^2.1.8",
+    "nodemailer": "^6.6.2",
     "socket.io": "^4.1.2",
     "sync-mysql": "^3.0.1",
     "sync-sql": "^1.0.2"
