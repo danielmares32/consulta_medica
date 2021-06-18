@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'consultasDisponibles', component: ConsultasDisponiblesComponent },
   { path: 'actualizarExpediente', component: ActualizarExpedienteComponent },
   { path: 'receta', component:RecetaComponent },
-  { path: 'room:idConsulta', component:RoomComponent },
+  { path: 'room/:idConsulta', component:RoomComponent },
   {path: 'registroLab', component: RegistroAnalisisComponent}
 ];
 

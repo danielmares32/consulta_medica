@@ -129,7 +129,8 @@ app.post('/llamadas', (req, res)=>{
 
 app.post('/llamandoPaciente', (req, res)=>{
     let idConsulta=req.body.idConsulta;
-    let idMedico=req.body.idConsulta;
+    let idMedico=req.body.idMedico;
+    console.log(idConsulta+'id medico: '+idMedico);
     connection.query(`UPDATE diagnostico SET id_medico='${idMedico}' WHERE id='${idConsulta}'`, (err, rows, fields)=>{
         if(err)
             console.error(err);
@@ -150,7 +151,6 @@ app.post('/agregarReceta', (req,res)=>{
 });
 
 app.post('/historialConsultas', (req, res)=>{
-    
     let idMedico=req.body.idMedico;
     let JSON1=[];
     connection.query(`SELECT * FROM diagnostico WHERE id_medico='${idMedico}'`,(err,rows,fields)=>{
@@ -446,8 +446,6 @@ app.post('/consulta', (req, res)=>{
         '${presion_arterial}','${pulso_cardiaco}','${fecha}')`, (err, rows,fields)=>{
             if(err)
                 console.error(err);
-            else
-                res.send('{"message":"Correcto"}');
     });
     connection.query(
         `UPDATE  paciente SET disponibilidad=1 WHERE id='${id_paciente}'`, (err, rows,fields)=>{
@@ -476,10 +474,12 @@ app.post('/consultaMedico', (req, res)=>{
 
 io.on('connection', (socket)=>{
     socket.on('join-room', (roomId, userId) => {
+        console.log('El roomid es '+roomId);
+        console.log('El userId es '+userId);
         socket.join(roomId);
-        socket.to(roomId).broadcast.emit('user-connected', userId);
+        socket.to(roomId).emit('user-connected', userId);
         socket.on('disconnect', ()=>{
-            socket.to(roomId).broadcast.emit('user-disconnected', userId);
+            socket.to(roomId).emit('user-disconnected', userId);
         })
     })
 })

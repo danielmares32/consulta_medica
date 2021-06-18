@@ -24,7 +24,6 @@ export class ConsultasDisponiblesComponent implements OnInit {
       console.log(this.idMedico);
     });
 
-
     let JSON1;
     JSON1={};
     this.consDisService.consultasdisponibles(JSON1).subscribe((response:any)=>{
@@ -35,14 +34,19 @@ export class ConsultasDisponiblesComponent implements OnInit {
     });
   }
 
-  createRoom(idCons:number){
+  createRoom(idCons:any){
+    console.log('Entre a crear sala');
     let JSON2={
       idConsulta:idCons,
       idMedico:this.idMedico
     };
-    this.consDisService.llamandoPaciente(JSON2);
-    this.router.navigate([`/room/${idCons}`]);
-
+    this.consDisService.llamandoPaciente(JSON2).subscribe((response:any)=>{
+      alert(response.message);
+    });
+    setTimeout(()=>{
+      this.router.navigate([`room/${idCons}`]);
+    },100);
+    
   }
 
 }
