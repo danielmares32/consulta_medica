@@ -27,4 +27,9 @@ export class LoginService {
     return this.webReqService.get('CerrarSes');
   }
 
+  Confirmar(){
+    return this.webReqService.get('confirmar');
+  }
+
+
 }

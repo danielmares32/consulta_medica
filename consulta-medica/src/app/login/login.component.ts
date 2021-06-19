@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import {Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,9 +10,13 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   usr:string='';
   Pass:string='';
-  constructor(private logService: LoginService,private router:Router) { }
+  constructor(private logService: LoginService,private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    if (this.route.snapshot.queryParams['id']) {
+       console.log('id: ', this.route.snapshot.queryParams['id']);
+       
+ }
   }
   respuesta:string='';
   usrConect:string='';

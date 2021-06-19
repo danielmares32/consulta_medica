@@ -262,7 +262,7 @@ app.post('/registroMedico',(req, res)=>{
         else{
             //res.end('{"message":"Correcto"}');
             
-var mailOptions = { from: '', to: correo, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/login\/' + usuario /*token.token*/ + '.\n' };
+var mailOptions = { from: '', to: correo, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/login\/?id=' + usuario /*token.token*/ + '.\n' };
             emailTransporter.sendMail(mailOptions, function (err) {
                 if (err) { return res.status(500).send({ msg: err.message }); } 
                 res.status(200).send('A verification email has been sent to ' + usuario + '.');
@@ -273,6 +273,33 @@ var mailOptions = { from: '', to: correo, subject: 'Account Verification Token',
     
 });
 
+
+app.post('/confirmar',(req, res)=>{
+    console.log('post request');	
+   
+    console.log(req.body);	
+    let nombre=req.body.nombre;
+    let usuario=req.body.usuario;
+    let correo=req.body.correo;
+    let contrasena=req.body.contrasena;
+    let disponibilidad=req.body.disponibilidad;
+    console.log(nombre);
+    connection.query(`INSERT INTO medico (nombre,usuario,correo,contraseña,disponibilidad) VALUES('${nombre}','${usuario}','${correo}','${contrasena}','${disponibilidad}')`, (err)=>{
+        if(err)
+            console.error(err);
+        else{
+            //res.end('{"message":"Correcto"}');
+            
+var mailOptions = { from: '', to: correo, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttps:\/\/' + req.headers.host + '\/login?id=' + usuario /*token.token*/ + '.\n' };
+            emailTransporter.sendMail(mailOptions, function (err) {
+                if (err) { return res.status(500).send({ msg: err.message }); } 
+                res.status(200).send('A verification email has been sent to ' + usuario + '.');
+            });
+        }
+            
+    });
+    
+});
 app.post('/loginMedico', (req,res)=>{
     ses=req.session;
     let usuario=req.body.usuario;
