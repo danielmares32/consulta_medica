@@ -1,33 +1,39 @@
 <div class="container">
-    
-    <a id="liga" routerLink="/registroP" >Registrar Paciente</a>
-    <a id="liga" routerLink="/registroLab" >Registrar Analisis</a>
-    <br><br><br>
+    <h1>Personal</h1>
     <p>
         <img class="img-fluid" src="/assets/enfermeros.jpg" alt="">
     </p>
+    <h2>Seleccione una acción a realizar</h2>
+    <p>
+        <a id="liga" routerLink="/registroP" >Registrar Paciente</a>
+    </p>
+    <br>
+    <p>
+        <a id="liga" routerLink="/registroLab" >Registrar Analisis</a>
+    </p>
+    <br><br>
     <div class="row">
         <div class=" col-md-6 horizontal-scrollable text-wrap " id="DOCTORES">
             <p class="titulo">Pacientes en espera de consulta</p>
-            <div *ngFor="let elemento of doctores">
-                <p class="formato">{{elemento.nombreD}}</p> 
-            </div>
+            <table class="table" *ngFor="let elemento of doctores">
+                <tr>
+                    <td>
+                        <p class="formato">{{elemento.nombreD}}</p>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" (click)="responder(elemento.idDiagnostico)">Responder Llamada</button>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class=" col-md-6 horizontal-scrollable text-wrap " id="Pacientes">
             <p class="titulo">Pacientes en espera de formulario</p>
-            <table *ngFor="let elemento of pacientes">
+            <table class="table" *ngFor="let elemento of pacientes">
                 <tr> 
-                <td colspan="2" class="formato">{{elemento.nombreP}} <b> ID: {{elemento.idPaciente}}</b></td>  
-                <td><button class="btn_for btn btn-info"  routerLink="/consulta">Formulario</button></td>
+                    <td colspan="2" class="formato">{{elemento.nombreP}} <b> ID: {{elemento.idPaciente}}</b></td>  
+                    <td><button class="btn btn-primary" routerLink="/consulta">Llenar Formulario</button></td>
                 </tr>
-        </table>
-               
+            </table>     
         </div>
     </div>
-        <div>
-            
-            <router-outlet></router-outlet>
-        </div>
-    
-
 </div>

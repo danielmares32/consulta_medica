@@ -1,16 +1,20 @@
 <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-<div class="video-grid">
-  <div *ngFor="let video of videos">
-    <span *ngIf="video.userId !== currentUserId; else currentUserVideoLabel">{{ video.userId }}</span>
-    <ng-template #currentUserVideoLabel>
-      <span>You</span>
-    </ng-template>
-    <video
-      [srcObject]="video.srcObject"
-      (loadedmetadata)="onLoadedMetadata($event)"
-      [muted]="video.muted"
-    >
-    </video>
+<div class="container">
+  <div class="video-grid ">
+    <div *ngFor="let video of videos">
+      <h4 *ngIf="video.userId !== currentUserId; else currentUserVideoLabel">{{ video.userId }}</h4>
+      <ng-template #currentUserVideoLabel>
+        <h4>You</h4>
+      </ng-template>
+      <p>
+        <video class="embed-responsive embed-responsive-16by9"
+        [srcObject]="video.srcObject"
+        (loadedmetadata)="onLoadedMetadata($event)"
+        [muted]="video.muted"
+        >
+        </video>
+      </p>
+    </div>
   </div>
+  <button class="btn btn-primary" (click)="irExpediente()">Finalizar Consulta</button>
 </div>
-<button class="btn btn-primary" (click)="irExpediente()">Finalizar Consulta</button>

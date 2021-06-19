@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { ListaPacientes } from './lista-pacientes.service';
 import { ListaDoctores } from './lista-doctores.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-vista-enfermera',
   templateUrl: './vista-enfermera.component.html',
@@ -12,7 +14,7 @@ export class VistaEnfermeraComponent implements OnInit {
   tipo:String="";
   pacientes:Array<paciente>;
   doctores: Array<Doctor>;
-  constructor(private listP: ListaPacientes,private listD: ListaDoctores,private logService: LoginService) {
+  constructor(private listP: ListaPacientes,private listD: ListaDoctores,private logService: LoginService, private router:Router) {
     this.pacientes=new Array<paciente>();
     this.doctores= new Array<Doctor>();
    }
@@ -39,13 +41,18 @@ export class VistaEnfermeraComponent implements OnInit {
 
       this.listD.listadoctores(JSON2).subscribe((response:any)=>{
         for (const iterator of response) {
-          let doctor=new Doctor(iterator.nombre);
+          let doctor=new Doctor(iterator.nombre,iterator.id);
           this.doctores.push(doctor);
         }
       });
     
   }
+
+  responder(idCons:string){
+    this.router.navigate([`room/${idCons}`]);
   }
+
+}
 
 class paciente{
     nombreP:String="";
@@ -58,8 +65,10 @@ class paciente{
 
 class Doctor{
   nombreD: String="";
-    constructor(nombreDo: string){
-      this.nombreD=nombreDo;
-    }
+  idDiagnostico: string="";
+  constructor(nombreDo: string, idDiagnostico: string){
+    this.nombreD=nombreDo;
+    this.idDiagnostico=idDiagnostico;
+  }
 
 }

@@ -27,7 +27,7 @@ export class RoomComponent implements OnInit {
   ngOnInit(): void {
     this.logService.sendSesion().subscribe((response: any)=>{
       console.log(JSON.stringify(response));
-      this.currentUserId= response.idu;
+      this.currentUserId=response.idu;
       console.log('El id usuario desde room'+this.currentUserId);
     });
     setTimeout(()=>{

@@ -45,7 +45,7 @@ const routes:Routes = [
     ActualizarExpedienteComponent,
     RecetaComponent,
     RoomComponent,
-    RegistroAnalisisComponent
+    RegistroAnalisisComponent,
   ],
   imports: [
     BrowserModule,

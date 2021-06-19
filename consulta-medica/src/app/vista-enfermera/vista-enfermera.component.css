@@ -9,25 +9,26 @@
 }
 
 .titulo{
-    font-family: 'Viga', sans-serif;
+    font-family: noto;
     color: #050B8B;
 }
 h1,h2{
     font-family: noto;
     padding: 15px;
+    text-align: center;
 }
 p{
     font-family: noto;
     text-align: center;
-    font-size: large;
+    font-size: medium;
 }
 
 table{
-width: 100%;
-table-layout: fixed;
+    width: 100%;
+    table-layout: fixed;
 }
 #liga{
-    font-family: 'Viga',sans-serif;
+    font-family: noto;
     text-decoration: none;
     padding: 10px;
     background-color: #C70039;
@@ -42,7 +43,7 @@ table-layout: fixed;
 .btn_for{
     text-decoration: none;
     padding: 0;
-    font-family: 'Hammersmith One',sans-serif;
+    font-family: noto;
     color: #070708;
 }
 
@@ -57,8 +58,8 @@ table-layout: fixed;
 button{
     text-align: center;
     font-family: noto;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    background-color: #C70039;
+    border-color: #C70039;
 }
 .imagen{
     width: 40px;
@@ -69,5 +70,5 @@ button{
 
 .formato{
     text-align: left;
-    font-family: 'Baloo Tammudu 2', sans-serif ;
+    font-family: noto;
 }

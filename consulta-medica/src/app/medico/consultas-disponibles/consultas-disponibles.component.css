@@ -17,6 +17,7 @@ th,td{
     text-align: center;
 }
 button{
+    font-family: noto;
     background-color: #C70039;
     border-color: #C70039;
 }

@@ -111,7 +111,7 @@ connection.connect();
 
 app.post('/llamadas', (req, res)=>{
     let JSON1=[];
-    connection.query(`SELECT * FROM diagnostico WHERE enfermedad IS NULL`,(err,rows,fields)=>{
+    connection.query(`SELECT * FROM diagnostico WHERE enfermedad IS NULL AND id_medico IS NOT NULL`,(err,rows,fields)=>{
         if(err)
             console.error(err);
         else{ 
