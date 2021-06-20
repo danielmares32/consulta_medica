@@ -342,7 +342,8 @@ var mailOptions = { from: '', to: correo, subject: 'Account Verification Token',
     
 });
 app.post('/loginMedico', (req,res)=>{
-    ses=req.session;
+    
+    
     let usuario=req.body.usuario;
     let contrasena=req.body.contrasena;
     let acceso=false;
@@ -353,6 +354,7 @@ app.post('/loginMedico', (req,res)=>{
             
         for (const iterator of rows) {
             if(iterator.usuario===usuario && iterator.contraseña===contrasena){
+                ses=req.session;
                 acceso=true;
                 let idUsr=iterator.id;
                 console.log(idUsr);
@@ -378,6 +380,7 @@ app.post('/loginMedico', (req,res)=>{
                 }
                 for (const iterator of rows) {
                     if(iterator.usuario===usuario && iterator.contraseña===contrasena){
+                        ses2=req.session;
                         acceso=true;
                         let idUsr=iterator.id;
                         console.log(idUsr);
