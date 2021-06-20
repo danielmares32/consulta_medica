@@ -26,7 +26,7 @@ let credentials = { key: privateKey, cert: certificate };
 let httpsServer = https.createServer(credentials, app);
 const io = require('socket.io')(httpsServer);
 var ses;
-
+var ses2;
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -55,23 +55,45 @@ app.use(session({
 
 
 app.post('/', (req, res)=>{
-    req.session=ses;
-    ses=req.session;
-    console.log('Request: ' +(req.body));
-    setTimeout(()=>{
-        console.log('Antes: '+ses);
-        if(ses!=null){
-            if(!ses.rl)
-                ses.rl=true;
-            else
-                ses.rl=false;
-        console.log('Despues: '+ses);
-        //res.sendFile(__dirname+'/consulta-medica/src/index.html');
-        console.log(ses.usuario);
-        console.log(ses);
-        res.send(ses);
-        }
-    }, 50);  
+    if(req.session.tipo==null){
+        req.session=ses;
+        ses=req.session;
+        console.log('Request: ' +(req.body));
+        setTimeout(()=>{
+            console.log('Antes: '+ses);
+            if(ses!=null){
+                if(!ses.rl)
+                    ses.rl=true;
+                else
+                    ses.rl=false;
+            console.log('Despues: '+ses);
+            //res.sendFile(__dirname+'/consulta-medica/src/index.html');
+            console.log(ses.usuario);
+            console.log(ses);
+            res.send(ses);
+            }
+        }, 50);  
+    }
+    else{
+        req.session=ses2;
+        ses2=req.session;
+        console.log('Request: ' +(req.body));
+        setTimeout(()=>{
+            console.log('Antes: '+ses2);
+            if(ses2!=null){
+                if(!ses2.rl)
+                    ses2.rl=true;
+                else
+                    ses2.rl=false;
+            console.log('Despues: '+ses2);
+            //res.sendFile(__dirname+'/consulta-medica/src/index.html');
+            console.log(ses2.usuario);
+            console.log(ses2);
+            res.send(ses2);
+            }
+        }, 50);  
+    }
+   
 });
 
 app.get('/inicio', (req,res)=>{
@@ -79,21 +101,40 @@ app.get('/inicio', (req,res)=>{
 });
 
 app.get('/CerrarSes', (req, res)=>{
-    req.session.destroy();
-    ses.destroy();   
-    req.session=null;
-    ses=null;
-    console.log('Despues de destruir');
-    console.log(ses);
+    if(req.session.tipo==null){
+        req.session.destroy();
+        ses.destroy();   
+        req.session=null;
+        ses=null;
+        console.log('Despues de destruir');
+        console.log(ses);
+    }else{
+        req.session.destroy();
+        ses2.destroy();   
+        req.session=null;
+        ses2=null;
+        console.log('Despues de destruir');
+        console.log(ses2);
+    }
+   
     
  });
 
 app.post ('/rl',(req, res)=>{
-    console.log('Request: ' +(req.body));
+    if(req.session.tipo==null){
+         console.log('Request: ' +(req.body));
     req.session=ses;
     ses=req.session;
     ses.rl=req.rl;
     res.send('Actualizado');
+    }else{
+        console.log('Request: ' +(req.body));
+        req.session=ses;
+        ses2=req.session;
+        ses2.rl=req.rl;
+        res.send('Actualizado');
+    }
+   
 });
 
 //Conexión a DB
@@ -340,9 +381,9 @@ app.post('/loginMedico', (req,res)=>{
                         acceso=true;
                         let idUsr=iterator.id;
                         console.log(idUsr);
-                        ses.usuario=iterator.usuario;
-                        ses.idu= String(idUsr) ;
-                        ses.tipo=iterator.tipo;
+                        ses2.usuario=iterator.usuario;
+                        ses2.idu= String(idUsr) ;
+                        ses2.tipo=iterator.tipo;
                         console.log(ses.id);
                      
                     }
@@ -350,7 +391,9 @@ app.post('/loginMedico', (req,res)=>{
               
         
                 if(acceso){
-                    ses.Activo=true;
+                  
+                    ses2.Activo=true;
+                   
                     res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
                     
                 }
