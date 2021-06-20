@@ -100,7 +100,7 @@ app.post ('/rl',(req, res)=>{
 //const mysql = require('mysql');
 //const bodyParser = require('body-parser');
 let connection = mysql.createConnection({
-    host: 'localhost',
+    host: '',
     user: 'root',
     password: '',
     database: 'consulta_medica'
@@ -536,7 +536,7 @@ io.on('connection', (socket)=>{
     })
 })
 
-let server = httpsServer.listen("8081", "127.0.0.1", function(){
+let server = httpsServer.listen("8081", function(){
     let host = server.address().address;
     let port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);
