@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   constructor(private logService: LoginService,private router:Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log('Hola bienvenido a Login');
     if (this.route.snapshot.queryParams['id']) {
        console.log('id: ', this.route.snapshot.queryParams['id']);
        
