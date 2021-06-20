@@ -395,9 +395,10 @@ app.post('/loginMedico', (req,res)=>{
         
                 if(acceso){
                   
+                    
                     ses2.Activo=true;
                    
-                    res.send('{"message":"True","usr":"'+ses.usuario+ '", "idusr":"'+ses.idu + '"}');
+                    res.send('{"message":"True","usr":"'+ses2.usuario+ '", "idusr":"'+ses2.idu + '"}');
                     
                 }
                 else{
