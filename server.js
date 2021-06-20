@@ -387,7 +387,7 @@ app.post('/loginMedico', (req,res)=>{
                         ses2.usuario=iterator.usuario;
                         ses2.idu= String(idUsr) ;
                         ses2.tipo=iterator.tipo;
-                        console.log(ses.id);
+                        console.log(ses2.id);
                      
                     }
                 }  
