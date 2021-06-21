@@ -48,8 +48,10 @@ export class InicioComponent implements OnInit {
          console.log(response);
          
         });
-      }
-    });  
+  }
+    });
+   
+    
   }
 
 
