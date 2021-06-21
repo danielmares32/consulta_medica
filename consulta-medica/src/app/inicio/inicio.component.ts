@@ -35,8 +35,8 @@ export class InicioComponent implements OnInit {
       console.log(e);
     }
     console.log('Hola bienvenido a Confirmacion de cuenta');
-    if (this.route.snapshot.queryParams['id']) {
-       console.log('id: ', this.route.snapshot.queryParams['id']);
+    if (this.route.snapshot.queryParams.id) {
+       console.log('id: ', this.route.snapshot.queryParams.id);
        
  }
     
