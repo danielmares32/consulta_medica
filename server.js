@@ -153,6 +153,54 @@ connection.connect();
 
 //API's
 
+app.post('/descargarDocumento', (req, res)=>{
+    let nombreArchivo=req.body.documento;
+    console.log(nombreArchivo);
+    res.download(__dirname+nombreArchivo);
+});
+
+app.post('/getResultadosLab', (req, res)=>{
+    let idPaciente=req.body.idPaciente;
+    connection.query(`SELECT * FROM resultados_laboratorio WHERE id_paciente='${idPaciente}'`, (err, rows, fields)=>{
+        if(err)
+            console.error(err);
+        else{
+            res.send(rows);
+        }
+    });
+});
+
+app.post('/getDatosPersonales', (req,res)=>{
+    let idPaciente=req.body.idPaciente;
+    connection.query(`SELECT * FROM paciente WHERE id='${idPaciente}'`, (err, rows, fields)=>{
+        if(err)
+            console.error(err);
+        else{
+            res.send(rows[0]);
+        }
+    });
+});
+
+app.post('/getDatos', (req,res)=>{
+    let idConsulta=req.body.idConsulta;
+    console.log(req.body);
+    connection.query(`SELECT * FROM diagnostico WHERE id='${idConsulta}'`, (err, rows, fields)=>{
+        if(err)
+            console.error(err);
+        else{
+            console.log(rows);
+            let idPaciente=rows[0].id_paciente;
+            connection.query(`SELECT * FROM diagnostico WHERE id_paciente='${idPaciente}'`, (err2, rows2, fields2)=>{
+                if(err2)
+                    console.error(err2);
+                else{
+                    res.send(rows2);
+                }
+            });
+        }
+    });
+});
+
 app.post('/llamadas', (req, res)=>{
     let JSON1=[];
     connection.query(`SELECT * FROM diagnostico WHERE enfermedad IS NULL AND id_medico IS NOT NULL`,(err,rows,fields)=>{

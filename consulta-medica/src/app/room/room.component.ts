@@ -4,6 +4,7 @@ import { Socket } from "ngx-socket-io";
 import Peer from 'peerjs';
 import { LoginService } from '../login.service';
 import { Router } from "@angular/router";
+import { RoomService } from 'src/app/room.service';
 
 //declare const Peer=new Peer();
 
@@ -23,14 +24,23 @@ export class RoomComponent implements OnInit {
   idConsulta:string = '0';
   videos: VideoElement[] = [];
   paciente: boolean=false;
-  constructor(private route: ActivatedRoute,private socket: Socket,private logService: LoginService, private router: Router) { }
+
+  historiaMedica: Array<Consulta>=new Array<Consulta>();
+  documentos: Array<Documento>=new Array<Documento>();
+  nombrePaciente: string='';
+  fechaPaciente: Date=new Date();
+  telefono: string='';
+
+
+  constructor(private route: ActivatedRoute,private socket: Socket,private logService: LoginService, private router: Router, private roomService: RoomService) { }
 
   ngOnInit(): void {
     this.logService.sendSesion().subscribe((response: any)=>{
       console.log(JSON.stringify(response));
       this.currentUserId=response.idu;
       console.log('El id usuario desde room'+this.currentUserId);
-      if(response.tipo=!null){
+      console.log('tipo es '+response.tipo);
+      if(response.tipo==!'undefined'){
         this.paciente=true;
       }
     });
@@ -101,6 +111,16 @@ export class RoomComponent implements OnInit {
         console.log(`receiving user-disconnected event from ${userId}`)
         this.videos = this.videos.filter(video => video.userId !== userId);
       });
+      setTimeout(()=>{
+        if(!this.paciente){
+          console.log('El usuario que esta no es paciente');
+          this.generarDatosPaciente();
+        } else {
+          console.log('El usuario es paciente');
+        }
+      },100);
+      
+
     },1000);
     
   }
@@ -137,4 +157,74 @@ export class RoomComponent implements OnInit {
       this.router.navigate([`actualizarExpediente/${this.idConsulta}`]);
   }
 
+  generarDatosPaciente(){
+    let JSON1={
+      idConsulta:this.idConsulta
+    };
+    let idPaciente='0';
+    this.roomService.historia(JSON1).subscribe((response:any)=>{
+      for (const iterator of response) {
+        this.historiaMedica.push(new Consulta(iterator.id_paciente, iterator.enfermedad, iterator.descripcion,iterator.peso, iterator.talla, iterator.temperatura, iterator.presion_arterial, iterator.pulso_cardiaco, new Date(iterator.fecha)));
+        idPaciente=iterator.id_paciente;
+      }
+    });
+    setTimeout(()=>{
+      let JSON2={
+        idPaciente:idPaciente,
+      }
+      this.roomService.datosPersonales(JSON2).subscribe((response:any)=>{
+        this.nombrePaciente=response.nombre;
+        this.fechaPaciente=new Date(response.fecha_nacimiento);
+        this.telefono=response.telefono;
+      });
+      this.roomService.laboratorio(JSON2).subscribe((response:any)=>{
+        for (const iterator of response) {
+          this.documentos.push(new Documento(iterator.tipo_de_analisis, new Date(iterator.fecha), iterator.documento));
+        }
+      });
+    },100);
+  }
+
+  descargar(documento:any){
+    let JSON1={
+      documento:documento
+    };
+    this.roomService.descarga(JSON1).subscribe((response:any)=>{
+      alert('Su descarga iniciara pronto');
+    });
+  }
+}
+
+class Consulta {
+  idPaciente:number;
+  enfermedad:string;
+  descripcion:string;
+  peso:number;
+  talla:number;
+  temperatura:number;
+  presion:number;
+  pulso:number;
+  fecha:Date;
+  constructor(idPaciente: number, enfermedad:string, descripcion:string ,peso: number, talla: number, temperatura: number, presion: number, pulso: number, fecha: Date) {
+    this.idPaciente=idPaciente;
+    this.enfermedad=enfermedad;
+    this.descripcion=descripcion;
+    this.peso=peso;
+    this.talla=talla;
+    this.temperatura=temperatura;
+    this.presion=presion;
+    this.pulso=pulso;
+    this.fecha=fecha;
+  }
+}
+
+class Documento {
+  tipo: string;
+  fecha: Date;
+  documento: string;
+  constructor(tipo: string, fecha: Date, documento: string){
+    this.tipo=tipo;
+    this.fecha=fecha;
+    this.documento=documento;
+  }
 }

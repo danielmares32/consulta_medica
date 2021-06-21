@@ -1,10 +1,10 @@
 <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-<div class="container">
+<div class="container-fluid">
   <div class="video-grid ">
     <div *ngFor="let video of videos">
       <h4 *ngIf="video.userId !== currentUserId; else currentUserVideoLabel">{{ video.userId }}</h4>
       <ng-template #currentUserVideoLabel>
-        <h4>You</h4>
+        <h4>Usted</h4>
       </ng-template>
       <p>
         <video class="embed-responsive embed-responsive-16by9"
@@ -17,4 +17,65 @@
     </div>
   </div>
   <button class="btn btn-primary" (click)="irExpediente()">Finalizar Consulta</button>
+  <div *ngIf="!paciente">
+    <p class="titulo">Datos Personales del Paciente</p>
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Fecha de Nacimiento</th>
+          <th scope="col">Teléfono</th>
+        </tr>
+        <tr>
+          <td>{{nombrePaciente}}</td>
+          <td>{{fechaPaciente.toLocaleString()}}</td>
+          <td>{{telefono}}</td>
+        </tr>
+      </table>
+    </div>
+    <p class="titulo">Historial de Consultas</p>
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th scope="col">ID del Paciente</th>
+                <th scope="col">Enfermedad</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Talla</th>
+                <th scope="col">Temperatura</th>
+                <th scope="col">Presión Arterial</th>
+                <th scope="col">Pulso Cardiaco</th>
+                <th scope="col">Fecha</th>
+            </tr>
+            <tr *ngFor="let elemento of historiaMedica">
+                <td>{{elemento.idPaciente}}</td>
+                <td>{{elemento.enfermedad}}</td>
+                <td>{{elemento.descripcion}}</td>
+                <td>{{elemento.peso}}</td>
+                <td>{{elemento.talla}}</td>
+                <td>{{elemento.temperatura}}</td>
+                <td>{{elemento.presion}}</td>
+                <td>{{elemento.pulso}}</td>
+                <td>{{elemento.fecha.toLocaleString()}}</td>
+            </tr>
+        </table>
+    </div>
+    <p class="titulo">Resultados de Laboratorio</p>
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th scope="col">Tipo de Análisis</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Documento</th>
+        </tr>
+        <tr *ngFor="let analisis of documentos">
+          <td>{{analisis.tipo}}</td>
+          <td>{{analisis.fecha.toLocaleString()}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="descargar(analisis.documento)">Descargar Documento</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
