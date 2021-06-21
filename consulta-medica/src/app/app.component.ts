@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   public isFirst=true;
   public usr='Invitado';
   public SesActiva=false;
+  public medico=false;
   constructor(private logService: LoginService,private router:Router) { }
 
   ngOnInit(): void {
@@ -23,6 +24,9 @@ export class AppComponent implements OnInit {
         console.log('REspuesta en root'+response);
         this.usr=response.usuario;
         this.SesActiva=response.Activo;
+        if(response.tipo==null){
+          this.medico=true;
+        }
         //this.router.navigate(['/inicio']);
       });
     }catch(e){

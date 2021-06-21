@@ -28,14 +28,20 @@
           <a class="nav-link active" routerLink="/registro" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Registro</a>
         </li>
         <div *ngIf="SesActiva">
-        <li class="nav-item">
+          <div *ngIf="medico">
+             <li class="nav-item">
           <a class="nav-link active" routerLink="/medico" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Medicos</a>
         </li>
+          </div>
+       
       </div>
       <div *ngIf="SesActiva">
-        <li class="nav-item">
-          <a class="nav-link active" routerLink="/vistaE" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Personal</a>
-        </li>
+        <div *ngIf="!medico" >
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/vistaE" routerLinkActive="active" (click)="isMenuCollapsed = true; isFirst=false">Personal</a>
+          </li>
+        </div>
+        
       </div>
       </ul>
     </div>

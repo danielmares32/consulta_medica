@@ -84,7 +84,7 @@ app.post('/', (req, res)=>{
                 if(!ses2.rl)
                     ses2.rl=true;
                 else
-                    ses2.rl=false;
+                    ses2.rl=false; 
             console.log('Despues: '+ses2);
             //res.sendFile(__dirname+'/consulta-medica/src/index.html');
             console.log(ses2.usuario);
@@ -318,7 +318,8 @@ app.post('/registroMedico',(req, res)=>{
 
 
 app.post('/confirmar',(req, res)=>{
-    connection.query(`UPDATE  medico SET Verificado=1 where Id=${req.body.IDConfirmada}`, (err)=>{
+    console.log(req.body);
+    connection.query(`UPDATE  medico SET Verificado=1 WHERE usuario='${req.body.IDconfirmada}'`, (err)=>{
         if(err)
             console.error(err);
         else{
