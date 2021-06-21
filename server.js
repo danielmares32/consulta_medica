@@ -129,7 +129,7 @@ app.post ('/rl',(req, res)=>{
     res.send('Actualizado');
     }else{
         console.log('Request: ' +(req.body));
-        req.session=ses;
+        req.session=ses2;
         ses2=req.session;
         ses2.rl=req.rl;
         res.send('Actualizado');
@@ -303,7 +303,7 @@ app.post('/registroMedico',(req, res)=>{
         else{
             //res.end('{"message":"Correcto"}');
             
-var mailOptions = { from: '', to: correo, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/login\/?id=' + usuario /*token.token*/ + '.\n' };
+var mailOptions = { from: '', to: correo, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttps:\/\/' + req.headers.host + '\/login\/?id=' + usuario /*token.token*/ + '.\n' };
             emailTransporter.sendMail(mailOptions, function (err) {
                 if (err) { return res.status(500).send({ msg: err.message }); } 
                 res.status(200).send('A verification email has been sent to ' + usuario + '.');
@@ -395,7 +395,7 @@ app.post('/loginMedico', (req,res)=>{
         
                 if(acceso){
                   
-                    
+
                     ses2.Activo=true;
                    
                     res.send('{"message":"True","usr":"'+ses2.usuario+ '", "idusr":"'+ses2.idu + '"}');
