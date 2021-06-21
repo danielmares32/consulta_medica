@@ -498,6 +498,45 @@ app.post('/ListaPacientes', (req, res)=>{
 
 //fin de sacar lista pacientes
 
+//obtener recetas
+app.post('/obtenerRec', (req, res)=>{
+    let JSON1=[];
+    connection.query(`SELECT * FROM receta`,(err,rows,fields)=>{
+        if(err)
+            console.error(err);
+        else{ 
+            for (const iterator of rows) {
+                connection.query(`SELECT nombre FROM diagnostico WHERE id='${iterator.id_diagnostico}'`, (err2, rows2, fields2) => {
+                    if (err2)
+                        console.error(err2);
+                    else {
+                        for( const iterator2 of rows2){
+                            connection.query(`SELECT * FROM paciente WHERE id='${iterator2.id_paciente}'`,(err,rows3,fields)=>{
+                                        if (err3)
+                                        console.error(err3);     
+                                        else{
+                                            JSON1.push({
+                                                rec: iterator.contenido,
+                                                fecha: iterator2.fecha,
+                                                paciente: rows3[0].nombre,
+                                                diagnostico: rows2[0].descripcion
+                                            });
+                                            
+                                        }
+                                    });
+                        }
+                                    
+                    }
+                });
+            }
+            setTimeout(()=>{
+                res.send(JSON1);
+            }, 100);
+        }
+    });
+});
+//fin obtener recetas
+
 //sacar lista de doctores activos
 app.post('/ListaDoctores', (req, res)=>{
     let JSON2=[];

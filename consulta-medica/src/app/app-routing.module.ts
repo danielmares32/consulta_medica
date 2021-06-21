@@ -14,6 +14,7 @@ import { ActualizarExpedienteComponent } from './medico/actualizar-expediente/ac
 import { RecetaComponent } from './medico/receta/receta.component';
 import { RoomComponent } from './room/room.component';
 import { RegistroAnalisisComponent } from './registro-analisis/registro-analisis.component';
+import { RecetasComponent } from './recetas/recetas.component';
 
 const routes: Routes = [
   { path: 'inicio', component:InicioComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'actualizarExpediente/:idConsulta', component: ActualizarExpedienteComponent },
   { path: 'receta/:idConsulta', component:RecetaComponent },
   { path: 'room/:idConsulta', component:RoomComponent },
-  {path: 'registroLab', component: RegistroAnalisisComponent}
+  {path: 'registroLab', component: RegistroAnalisisComponent},
+  {path: 'Recetas', component: RecetasComponent}
 ];
 
 @NgModule({
