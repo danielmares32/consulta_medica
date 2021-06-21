@@ -84,7 +84,7 @@ app.post('/', (req, res)=>{
                 if(!ses2.rl)
                     ses2.rl=true;
                 else
-                    ses2.rl=false;
+                    ses2.rl=false; 
             console.log('Despues: '+ses2);
             //res.sendFile(__dirname+'/consulta-medica/src/index.html');
             console.log(ses2.usuario);
