@@ -27,8 +27,8 @@ export class LoginService {
     return this.webReqService.get('CerrarSes');
   }
 
-  Confirmar(){
-    return this.webReqService.get('confirmar');
+  Confirmar(JSON1:Object){
+    return this.webReqService.post('confirmar',JSON1);
   }
 
 

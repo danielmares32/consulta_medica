@@ -38,7 +38,16 @@ export class InicioComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (this.route.snapshot.queryParams.id) {
         console.log('id: ', this.route.snapshot.queryParams.id);
-        
+        let JSON1;
+        JSON1={
+    
+          IDconfirmada:this.route.snapshot.queryParams.id
+    
+       }
+        this.logService.Confirmar(JSON1).subscribe((response: any)=>{
+         console.log(response);
+         
+        });
   }
     });
    
