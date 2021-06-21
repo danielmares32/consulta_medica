@@ -37,9 +37,8 @@ export class InicioComponent implements OnInit {
     console.log('Hola bienvenido a Confirmacion de cuenta');
     this.route.queryParams.subscribe(params => {
       if (this.route.snapshot.queryParams.id) {
-        console.log('id: ', this.route.snapshot.queryParams.id);
-        
-  }
+        console.log('id: ', this.route.snapshot.queryParams.id); 
+      }
     });
    
     
