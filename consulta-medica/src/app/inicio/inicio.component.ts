@@ -37,10 +37,6 @@ export class InicioComponent implements OnInit {
     console.log('Hola bienvenido a Confirmacion de cuenta');
     this.route.queryParams.subscribe(params => {
       if (this.route.snapshot.queryParams.id) {
-<<<<<<< HEAD
-        console.log('id: ', this.route.snapshot.queryParams.id); 
-      }
-=======
         console.log('id: ', this.route.snapshot.queryParams.id);
         let JSON1;
         JSON1={
@@ -53,7 +49,6 @@ export class InicioComponent implements OnInit {
          
         });
   }
->>>>>>> 8a8d299723562c023ee2dae478fafbb25161b2f7
     });
    
     
