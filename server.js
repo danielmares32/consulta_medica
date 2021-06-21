@@ -318,7 +318,8 @@ app.post('/registroMedico',(req, res)=>{
 
 
 app.post('/confirmar',(req, res)=>{
-    connection.query(`UPDATE  medico SET Verificado=1 where Id=${req.body.IDConfirmada}`, (err)=>{
+    console.log(req.body);
+    connection.query(`UPDATE  medico SET Verificado=1 WHERE usuario='${req.body.IDconfirmada}'`, (err)=>{
         if(err)
             console.error(err);
         else{
