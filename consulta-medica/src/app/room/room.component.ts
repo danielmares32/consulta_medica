@@ -22,6 +22,7 @@ export class RoomComponent implements OnInit {
   currentUserId:string = '0';
   idConsulta:string = '0';
   videos: VideoElement[] = [];
+  paciente: boolean=false;
   constructor(private route: ActivatedRoute,private socket: Socket,private logService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
@@ -29,6 +30,9 @@ export class RoomComponent implements OnInit {
       console.log(JSON.stringify(response));
       this.currentUserId=response.idu;
       console.log('El id usuario desde room'+this.currentUserId);
+      if(response.tipo=!null){
+        this.paciente=true;
+      }
     });
     setTimeout(()=>{
       console.log(`Initialize Peer with id ${this.currentUserId}`);
@@ -127,7 +131,10 @@ export class RoomComponent implements OnInit {
   }
 
   irExpediente(){
-    this.router.navigate([`actualizarExpediente/${this.idConsulta}`]);
+    if(this.paciente)
+      this.router.navigate(['inicio']);
+    else
+      this.router.navigate([`actualizarExpediente/${this.idConsulta}`]);
   }
 
 }
