@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import {Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -9,7 +11,7 @@ import {Router} from '@angular/router';
 export class InicioComponent implements OnInit {
 
   public usr='';
-  constructor(private logService: LoginService,private router:Router) { }
+  constructor(private logService: LoginService,private router:Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     try{
@@ -32,6 +34,11 @@ export class InicioComponent implements OnInit {
     }catch(e ){
       console.log(e);
     }
+    console.log('Hola bienvenido a Confirmacion de cuenta');
+    if (this.route.snapshot.queryParams['id']) {
+       console.log('id: ', this.route.snapshot.queryParams['id']);
+       
+ }
     
   }
 
