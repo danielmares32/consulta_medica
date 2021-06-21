@@ -122,14 +122,14 @@ app.get('/CerrarSes', (req, res)=>{
 
 app.post ('/rl',(req, res)=>{
     if(req.session.tipo==null){
-         console.log('Request: ' +(req.body));
-    req.session=ses;
-    ses=req.session;
-    ses.rl=req.rl;
-    res.send('Actualizado');
-    }else{
         console.log('Request: ' +(req.body));
         req.session=ses;
+        ses=req.session;
+        ses.rl=req.rl;
+        res.send('Actualizado');
+    }else{
+        console.log('Request: ' +(req.body));
+        req.session=ses2;
         ses2=req.session;
         ses2.rl=req.rl;
         res.send('Actualizado');
@@ -391,15 +391,9 @@ app.post('/loginMedico', (req,res)=>{
                      
                     }
                 }  
-              
-        
                 if(acceso){
-                  
-                    
                     ses2.Activo=true;
-                   
-                    res.send('{"message":"True","usr":"'+ses2.usuario+ '", "idusr":"'+ses2.idu + '"}');
-                    
+                    res.send('{"message":"True","usr":"'+ses2.usuario+ '", "idusr":"'+ses2.idu + '", "tipo":"'+ses2.tipo+'"}');
                 }
                 else{
                     res.send('{"message":"false"}');
