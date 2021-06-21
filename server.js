@@ -306,7 +306,7 @@ app.post('/registroMedico',(req, res)=>{
         else{
             //res.end('{"message":"Correcto"}');
             
-var mailOptions = { from: '', to: correo, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttps:\/\/' + req.headers.host + '\/login\/?id=' + usuario /*token.token*/ + '.\n' };
+var mailOptions = { from: '', to: correo, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttps:\/\/' + req.headers.host + '\/login?id=' + usuario /*token.token*/ + '.\n' };
             emailTransporter.sendMail(mailOptions, function (err) {
                 if (err) { return res.status(500).send({ msg: err.message }); } 
                 res.status(200).send('A verification email has been sent to ' + usuario + '.');
