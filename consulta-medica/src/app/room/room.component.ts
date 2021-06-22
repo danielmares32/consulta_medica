@@ -5,6 +5,7 @@ import Peer from 'peerjs';
 import { LoginService } from '../login.service';
 import { Router } from "@angular/router";
 import { RoomService } from 'src/app/room.service';
+import { saveAs } from 'file-saver';
 
 //declare const Peer=new Peer();
 
@@ -189,8 +190,12 @@ export class RoomComponent implements OnInit {
     let JSON1={
       documento:documento
     };
-    this.roomService.descarga(JSON1).subscribe((response:any)=>{
+    this.roomService.descarga(JSON1).subscribe(data=>{
       alert('Su descarga iniciara pronto');
+      console.log(data);
+      let downloadURL=window.URL.createObjectURL(data);
+      saveAs(downloadURL);
+      
     });
   }
 }
