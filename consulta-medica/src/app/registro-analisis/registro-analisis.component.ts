@@ -22,7 +22,7 @@ export class RegistroAnalisisComponent implements OnInit {
   }
 
   registrar(): void {
-    this.ruta='../../../../analisisPacientes/'+this.idPaciente+'-'+this.fileToUpload.name;
+    this.ruta='/analisisPacientes/'+this.idPaciente+'-'+this.fileToUpload.name;
     let JSON1={
       idPaciente:this.idPaciente,
       fecha:this.fecha,

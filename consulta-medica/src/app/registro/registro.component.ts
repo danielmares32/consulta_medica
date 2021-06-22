@@ -24,6 +24,7 @@ export class RegistroComponent implements OnInit {
     }
     this.RegService.crearRegistro(JSON).subscribe((response: any)=>{
       console.log(response);
+      alert('Registrado exitosamente');
     });
   }
 

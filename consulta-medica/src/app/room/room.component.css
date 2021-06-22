@@ -2,7 +2,13 @@
     font-family: noto;
     src: url('/assets/Noto.ttf');
 }
-
+table{
+  font-family: noto;
+}
+.titulo{
+    font-family: noto;
+    color: #050B8B;
+}
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 450px);

@@ -10,6 +10,42 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class InicioComponent implements OnInit {
 
+
+  public chartType: string = 'bar';
+
+  public chartDatasets: Array<any> = [
+    { data: [23.77, 5.36, 4.34, 1.41, 1.035], label: 'Enfermedades más comunes en méxico 2019 (en miles)' }
+  ];
+
+  public chartLabels: Array<any> = ['Respiratorias', 'Intestinales', 'Vías Urinarias', 'Ulceras, Gastritis', 'Conjuntivitis'];
+
+  public chartColors: Array<any> = [
+    {
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 2,
+    }
+  ];
+
+  public chartOptions: any = {
+    responsive: true
+  };
+  public chartClicked(e: any): void { }
+  public chartHovered(e: any): void { }
   public usr='';
   constructor(private logService: LoginService,private router:Router,private route: ActivatedRoute) { }
 
