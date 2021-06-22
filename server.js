@@ -348,7 +348,7 @@ app.post('/registroMedico',(req, res)=>{
     let contrasena=req.body.contrasena;
     let disponibilidad=req.body.disponibilidad;
     console.log(nombre);
-    connection.query(`INSERT INTO medico (nombre,usuario,correo,contraseña,disponibilidad) VALUES('${nombre}','${usuario}','${correo}','${contrasena}','${disponibilidad}')`, (err)=>{
+    connection.query(`INSERT INTO medico (nombre,usuario,correo,contraseña,disponibilidad,verificado) VALUES('${nombre}','${usuario}','${correo}','${contrasena}','${disponibilidad}','0')`, (err)=>{
         if(err)
             console.error(err);
         else{

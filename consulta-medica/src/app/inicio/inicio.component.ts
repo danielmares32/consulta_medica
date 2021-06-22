@@ -14,10 +14,10 @@ export class InicioComponent implements OnInit {
   public chartType: string = 'bar';
 
   public chartDatasets: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'My First dataset' }
+    { data: [23.77, 5.36, 4.34, 1.41, 1.035], label: 'Enfermedades más comunes en méxico 2019 (en miles)' }
   ];
 
-  public chartLabels: Array<any> = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+  public chartLabels: Array<any> = ['Respiratorias', 'Intestinales', 'Vías Urinarias', 'Ulceras, Gastritis', 'Conjuntivitis'];
 
   public chartColors: Array<any> = [
     {
