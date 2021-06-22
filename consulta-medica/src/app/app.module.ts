@@ -24,8 +24,7 @@ import { RoomComponent } from './room/room.component';
 import { SocketIoModule } from "ngx-socket-io";
 import { RegistroAnalisisComponent } from './registro-analisis/registro-analisis.component';
 import { RecetasComponent } from './recetas/recetas.component';
-import {ChartsModule} from 'ng2-charts';
-import {ColorPickerModule} from 'ngx-color-picker';
+
 const routes:Routes = [
   {path: 'inicio', component: LoginComponent}
 ];
