@@ -19,6 +19,6 @@ export class RoomService {
     return this.webReqService.post('getResultadosLab', JSON);
   }
   descarga(JSON: Object){
-    return this.http.post(`https://10.10.10.5:8081/descargarDocumento`,JSON,{responseType:`blob`});
+    return this.http.post(`https://10.10.10.8:8081/descargarDocumento`,JSON,{responseType:`blob`});
   }
 }

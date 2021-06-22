@@ -542,12 +542,11 @@ app.post('/obtenerRec', (req, res)=>{
 
 app.post('/crearPdf',(req,res)=>{
         const contenido=req.body.contenidoA;
-        archPdf.create(contenido).toFile('./html-pdf.pdf', function(err, res) {
+        archPdf.create(contenido,{ filename: './html-pdf.pdf', format: 'Letter', phantomPath: './node_modules/phantomjs/lib/phantom/bin/phantomjs', orientation: 'portrait', type: 'pdf', timeout: 30000 }).toFile('./html-pdf.pdf', function(err, res) {
             if (err){
                 console.log(err);
             } else {
                 console.log(res);
-               ban=true;
             }
         });
 
@@ -637,6 +636,7 @@ app.post('/consulta', (req, res)=>{
         `INSERT INTO diagnostico (id_paciente,peso,talla,temperatura,presion_arterial,
         pulso_cardiaco,fecha) VALUES('${id_paciente}','${peso}','${talla}','${temperatura}',
         '${presion_arterial}','${pulso_cardiaco}','${fecha}')`, (err, rows,fields)=>{
+            console.log(req.body);
             if(err)
                 console.error(err);
     });

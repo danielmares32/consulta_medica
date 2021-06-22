@@ -47,7 +47,7 @@ export class RecetasComponent implements OnInit {
      
      
     });
-    window.open('file:///C://Users//zkril//Desktop//WEB//ProyectoFinal2_0//consulta_medica//html-pdf.pdf',"Receta");
+    //window.open('file:///home/daniel/Documents/ConsultaMedica/html-pdf.pdf',"Receta");
   } 
     
   }

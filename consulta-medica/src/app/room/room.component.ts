@@ -41,7 +41,7 @@ export class RoomComponent implements OnInit {
       this.currentUserId=response.idu;
       console.log('El id usuario desde room'+this.currentUserId);
       console.log('tipo es '+response.tipo);
-      if(response.tipo==!'undefined'){
+      if(response.tipo=!'undefined'){
         this.paciente=true;
       }
     });
@@ -119,7 +119,7 @@ export class RoomComponent implements OnInit {
         } else {
           console.log('El usuario es paciente');
         }
-      },100);
+      },500);
       
 
     },1000);
@@ -174,6 +174,7 @@ export class RoomComponent implements OnInit {
         idPaciente:idPaciente,
       }
       this.roomService.datosPersonales(JSON2).subscribe((response:any)=>{
+        console.log(response);
         this.nombrePaciente=response.nombre;
         this.fechaPaciente=new Date(response.fecha_nacimiento);
         this.telefono=response.telefono;
@@ -183,7 +184,7 @@ export class RoomComponent implements OnInit {
           this.documentos.push(new Documento(iterator.tipo_de_analisis, new Date(iterator.fecha), iterator.documento));
         }
       });
-    },100);
+    },500);
   }
 
   descargar(documento:any){

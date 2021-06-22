@@ -27,6 +27,7 @@ fecha:string="";
       
     }
     this.RegCService.crearRegistro(JSON).subscribe((response: any)=>{
+      alert(response.message);
       console.log(response);
     });
   } 
