@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
+    "html-pdf": "^3.0.1",
     "jquery": "^3.6.0",
     "mysql": "^2.18.1",
     "mysql-await": "^2.1.8",

@@ -1,6 +1,7 @@
 <div class="container" id="receta">
     <div *ngFor="let elemento of recet">
-        <p>{{elemento.paciente}}</p>
-    </div>
+        <p><b>Paciente:</b> {{elemento.paciente}} <b>ID:</b> {{elemento.id_paciente}} <b>Fecha: </b> {{elemento.fecha}}  <button class="btn btn-primary" (click)="crearPDF(elemento.id_paciente)">Imprimir</button></p>
 
+    </div>
+       
 </div>

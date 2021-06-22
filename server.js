@@ -3,6 +3,7 @@ const https = require('https');
 const express = require('express');
 const session = require('express-session'); 
 const bodyParser = require('body-parser');
+const archPdf=require('html-pdf');
 const  fileUpload = require('express-fileupload');
 var mailer= require("nodemailer");
 const senderMail = "consultamedicaprof@gmail.com";
@@ -37,7 +38,6 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(express.static(__dirname+'/consulta-medica/dist/consulta-medica'));
 app.use(fileUpload());
-
 app.use(session({
   
     // It holds the secret key for session
@@ -458,12 +458,12 @@ app.post('/obtenerRec', (req, res)=>{
             console.error(err);
         else{ 
             for (const iterator of rows) {
-                connection.query(`SELECT nombre FROM diagnostico WHERE id='${iterator.id_diagnostico}'`, (err2, rows2, fields2) => {
+                connection.query(`SELECT *  FROM diagnostico WHERE id='${iterator.id_diagnostico}'`, (err2, rows2, fields2) => {
                     if (err2)
                         console.error(err2);
                     else {
                         for( const iterator2 of rows2){
-                            connection.query(`SELECT * FROM paciente WHERE id='${iterator2.id_paciente}'`,(err,rows3,fields)=>{
+                            connection.query(`SELECT * FROM paciente WHERE id='${iterator2.id_paciente}'`,(err3,rows3,fields3)=>{
                                         if (err3)
                                         console.error(err3);     
                                         else{
@@ -471,6 +471,7 @@ app.post('/obtenerRec', (req, res)=>{
                                                 rec: iterator.contenido,
                                                 fecha: iterator2.fecha,
                                                 paciente: rows3[0].nombre,
+                                                idPac: rows3[0].id,
                                                 diagnostico: rows2[0].descripcion
                                             });
                                             
@@ -488,6 +489,26 @@ app.post('/obtenerRec', (req, res)=>{
     });
 });
 //fin obtener recetas
+
+//crear receta
+
+app.post('/crearPdf',(req,res)=>{
+        const contenido=req.body.contenidoA;
+        archPdf.create(contenido).toFile('./html-pdf.pdf', function(err, res) {
+            if (err){
+                console.log(err);
+            } else {
+                console.log(res);
+               ban=true;
+            }
+        });
+
+});
+
+//fin crear receta
+
+
+
 
 //sacar lista de doctores activos
 app.post('/ListaDoctores', (req, res)=>{
